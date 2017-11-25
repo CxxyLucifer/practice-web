@@ -4,7 +4,7 @@
   "description": "shop-web",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --content-base dist"
+    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js"
   },
   "keywords": [],
   "author": "liuhui",

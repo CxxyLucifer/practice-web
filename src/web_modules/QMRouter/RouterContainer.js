@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { log } from 'core-js/library/web/timers';
 
+/**
+ * 
+ */
 export default class RouterContainer extends Component {
-
-    static defaultProps = {
-        entries: []
-    }
-
     constructor(props) {
         super(props)
     }
@@ -16,7 +15,7 @@ export default class RouterContainer extends Component {
         return this.RouteContainer(entries || []);
     }
 
-    RouteContainer = (routes) => {
+    RouteContainer(routes) {
         if (Array.isArray(routes) && routes.length > 0) {
             return (
                 <Switch>
@@ -24,7 +23,9 @@ export default class RouterContainer extends Component {
                         routes.map((k, v) => {
                             let { name, path, exact, render } = k;
                             return (
-                                <Route key={'k_' + name} {...k} />
+                                <Route key={'k_' + name} {...k} render={(props) => {
+                                    return React.createElement(k.render, props, null)
+                                }} />
                             )
                         })
                     }

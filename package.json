@@ -2,7 +2,7 @@
   "name": "shop-web",
   "version": "1.0.0",
   "description": "shop-web",
-  "main": "webpack.config.js",
+  "main": "webpack.dev.js",
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js"
   },
@@ -13,7 +13,8 @@
     "antd": "^2.13.10",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "react-router-dom": "^4.2.2"
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",

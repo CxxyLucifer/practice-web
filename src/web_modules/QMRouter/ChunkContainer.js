@@ -11,8 +11,7 @@ export default class ChunkContainer extends Component {
 
 	render() {
 		let { entries } = this.props || {};
-		let ContainerNode = this.RouteContainer(entries || []);
-		return ContainerNode
+		return this.RouteContainer(entries || []);
 	}
 
 	/**

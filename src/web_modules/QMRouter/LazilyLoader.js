@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { appendBundles, appendLink, assign, splitObject } from './RouterUtil'
 
-const noop = () => undefined
+const noop = () => { }
 
 export default class LazilyLoader extends Component {
 
@@ -37,6 +37,7 @@ export default class LazilyLoader extends Component {
 		let { name, children } = props || {};
 		//更具name生成ref
 		let ref = (name || 'componentProxy').replace(/\-|\_|\./g, m => '').toLowerCase();
+
 		if (Component) {
 			return React.createElement(Component, props, children);
 		} else {

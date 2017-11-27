@@ -4,7 +4,6 @@ import { appendBundles, appendLink, assign, splitObject } from './RouterUtil'
 const noop = () => { }
 
 export default class LazilyLoader extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -51,7 +50,7 @@ export default class LazilyLoader extends Component {
 	 * @param { String } source
 	 * @description 加载Bundle（业务线main.js入口）
 	 */
-	syncLoadBundle({ name, source }) {
+	syncLoadBundle = ({ name, source }) => {
 		let self = this;
 		let { Component } = this.state || {};
 		try {
@@ -86,7 +85,7 @@ export default class LazilyLoader extends Component {
 	 * @param {string} name chunk name
 	 * @description 加载Chunk（页面分片chunkFile.js入口）
 	 */
-	async syncLoadChunk({ name }) {
+	syncLoadChunk = async ({ name }) => {
 		let self = this;
 		let { Component } = this.state || {};
 		let { render } = this.props;

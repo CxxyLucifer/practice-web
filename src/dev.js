@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createHashHistory } from 'history';
 
-import { ChunkContainer } from 'QMRouter';
+import { ChunkContainer } from 'router';
 import entries from './entries';
 
 const history = createHashHistory();

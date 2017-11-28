@@ -2,7 +2,7 @@ import styles from './style/index.less';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import { ChunkContainer } from 'QMRouter';
+import { ChunkContainer } from 'router';
 import entries from './entries';
 
 class App extends Component {

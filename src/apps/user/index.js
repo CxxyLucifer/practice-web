@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import { Table, Button, Pagination } from 'antd';
-
-const data = [];
-for (let i = 0; i < 10; i++) {
-    data.push({
-        key: i,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`,
-    });
-}
+import Fetch from 'util/Fetch';
 
 export default class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [],
             selectedRowKeys: [],
             loading: false,
-            currentPage: 1,
-            pageSize: 10
+            total: 0
         };
     }
 
+    componentWillMount() {
+        this._init(1, 10);
+    }
+
+    _init = (currentPage, pageSize) => {
+        const _this = this;
+        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize)
+            .then((json) => {
+                console.log('=====json:', json)
+                _this.setState({ data: json.data, total: json.totalCount });
+            })
+    }
+
     render() {
-        const { loading, selectedRowKeys, currentPage, pageSize } = this.state;
+        const { data, loading, selectedRowKeys, total } = this.state;
         const rowSelection = {
             selectedRowKeys,
             onChange: this._onSelectChange,
@@ -44,19 +48,14 @@ export default class index extends Component {
                     columns={
                         [
                             {
-                                title: 'Name',
-                                dataIndex: 'name',
+                                title: '姓名',
+                                dataIndex: 'user_name',
                                 width: 200
                             }, {
-                                title: 'Age',
-                                dataIndex: 'age',
-                                sorter: (a, b) => a.age - b.age,
-                                width: 100
+                                title: '班级',
+                                dataIndex: 'class_name',
                             }, {
-                                title: 'Address',
-                                dataIndex: 'address',
-                            }, {
-                                title: 'Action',
+                                title: '操作',
                                 dataIndex: '',
                                 render: () => <a href="#">修改</a>
                             },
@@ -67,9 +66,9 @@ export default class index extends Component {
                     className='common-pagination'
                     onChange={this._onPageChange}
                     showTotal={(total, range) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
-                    defaultCurrent={currentPage}
-                    defaultPageSize={pageSize}
-                    total={500}
+                    defaultCurrent={1}
+                    defaultPageSize={10}
+                    total={total}
                     itemRender={this._itemRender}
                     showQuickJumper />
             </div>
@@ -78,7 +77,7 @@ export default class index extends Component {
 
 
     _onPageChange = (currentPage, pageSize) => {
-        this.setState({ currentPage: currentPage, pageSize: pageSize })
+        this._init(currentPage, pageSize);
     }
 
     _onSelectChange = (selectedRowKeys) => {

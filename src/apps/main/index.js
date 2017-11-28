@@ -1,33 +1,23 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 export default class index extends Component {
 
+    componentDidMount() {
+        let path = this.props.location.pathname;
+        console.log('======== path:', path)
+    }
+
+    _initComponent() {
+    }
+
     render() {
         return (
             <div>
                 <Layout>
-                    <Header className="header">
-                        <div className="logo" />
-                        <Menu
-                            theme="dark"
-                            mode="horizontal"
-                            defaultSelectedKeys={['1']}
-                            style={{ lineHeight: '64px' }}
-                        >
-                            <Menu.Item key="1">nav 1</Menu.Item>
-                            <Menu.Item key="2">nav 2</Menu.Item>
-                            <Menu.Item key="3">nav 3</Menu.Item>
-                        </Menu>
-                    </Header>
                     <Layout>
                         <Sider width={200} style={{ background: '#fff' }}>
                             <Menu
@@ -62,8 +52,8 @@ export default class index extends Component {
                                 <Breadcrumb.Item>List</Breadcrumb.Item>
                                 <Breadcrumb.Item>App</Breadcrumb.Item>
                             </Breadcrumb>
-                            <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                                Content
+                            <Content style={{ background: '#fff', padding: 10, margin: 0, minHeight: 280 }}>
+                                content
                             </Content>
                         </Layout>
                     </Layout>

@@ -7,6 +7,6 @@ export default [
     },
     {
         name: 'user-list', path: '/user/list', exact: true,
-        render: () => System.import(/* webpackChunkName: "user-list" */ './apps/user/index')
+        render: () => System.import(/* webpackChunkName: "user-list" */ './apps/user/user-list')
     }
 ]

@@ -2,9 +2,9 @@ import 'whatwg-fetch';
 import { message } from 'antd';
 import objectAssign from 'object-assign';
 
-export default function Fetch(url, options) {
-    if (undefined != options && undefined != options.body) {
-        options.body = JSON.stringify(options.body)
+export default function Fetch(url, param) {
+    if (undefined != param && undefined != param.body) {
+        param.body = JSON.stringify(param.body)
     }
     let req = {
         headers: {
@@ -13,7 +13,7 @@ export default function Fetch(url, options) {
         }
     };
     const defer = new Promise((resolve, reject) => {
-        fetch(url, objectAssign(req, options))
+        fetch(url, objectAssign(req, param))
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json()

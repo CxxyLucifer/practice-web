@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination } from 'antd';
+import { Table, Button, Pagination, Modal } from 'antd';
 import Fetch from 'util/Fetch';
+import Dialog from 'util/Dialog';
 
-export default class index extends Component {
+import UserAdd from './user-add';
+
+const ModalIndex = "user";
+
+export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,11 +24,15 @@ export default class index extends Component {
 
     _init = (currentPage, pageSize) => {
         const _this = this;
-        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize)
-            .then((json) => {
-                console.log('=====json:', json)
-                _this.setState({ data: json.data, total: json.totalCount });
-            })
+        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize).then((json) => {
+            //console.log('=====json:', json)
+            _this.setState({ data: json.data, total: json.totalCount });
+        })
+    }
+
+    _showAdd = () => {
+        Dialog.load(<UserAdd />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom', maskClosable: true }).then((res) => {
+        })
     }
 
     render() {
@@ -36,7 +45,13 @@ export default class index extends Component {
 
         return (
             <div>
-                <div style={{ marginBottom: 16 }}>
+                <div style={{ marginBottom: 16, marginTop: 16, marginLeft: 16 }}>
+                    <Button
+                        type="primary"
+                        onClick={() => this._showAdd()}
+                    >
+                        新增
+                    </Button>
                     <span style={{ marginLeft: 8 }}>
                         {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
                     </span>
@@ -48,7 +63,7 @@ export default class index extends Component {
                     columns={
                         [
                             {
-                                title: '姓名',
+                                title: '用户名',
                                 dataIndex: 'user_name',
                                 width: 200
                             }, {

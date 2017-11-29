@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
+import UserList from '../user/user-list';
+
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -53,7 +55,7 @@ export default class index extends Component {
                                 <Breadcrumb.Item>App</Breadcrumb.Item>
                             </Breadcrumb>
                             <Content style={{ background: '#fff', padding: 10, margin: 0, minHeight: 280 }}>
-                                content
+                                <UserList />
                             </Content>
                         </Layout>
                     </Layout>

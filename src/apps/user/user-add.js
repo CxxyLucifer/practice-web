@@ -45,7 +45,6 @@ class UserAdd extends Component {
                 <FormItem
                     {...formItemLayout}
                     label="用户名"
-                    hasFeedback
                 >
                     {getFieldDecorator('nickname', {
                         rules: [
@@ -61,7 +60,6 @@ class UserAdd extends Component {
                 <FormItem
                     {...formItemLayout}
                     label="密码"
-                    hasFeedback
                 >
                     {getFieldDecorator('password', {
                         rules: [
@@ -75,7 +73,6 @@ class UserAdd extends Component {
                 <FormItem
                     {...formItemLayout}
                     label="确认密码"
-                    hasFeedback
                 >
                     {getFieldDecorator('confirm', {
                         rules: [
@@ -90,7 +87,6 @@ class UserAdd extends Component {
                 <FormItem
                     {...formItemLayout}
                     label="班级"
-                    hasFeedback
                 >
                     {getFieldDecorator('class_id', {
                         rules: [{ required: true, message: '请选择班级' }],

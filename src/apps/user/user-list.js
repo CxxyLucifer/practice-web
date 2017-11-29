@@ -31,7 +31,7 @@ export default class UserList extends Component {
     }
 
     _showAdd = () => {
-        Dialog.load(<UserAdd />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom', maskClosable: true }).then((res) => {
+        Dialog.load(<UserAdd />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
         })
     }
 

@@ -19,6 +19,7 @@ export default class UserList extends Component {
     }
 
     componentWillMount() {
+
         this._init(1, 10);
     }
 
@@ -31,7 +32,12 @@ export default class UserList extends Component {
     }
 
     _showAdd = () => {
-        Dialog.load(<UserAdd />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
+        Dialog.load(<UserAdd type='add' />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
+        })
+    }
+
+    _showEdit = () => {
+        Dialog.load(<UserAdd type='edit' />, { title: "编辑", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
         })
     }
 
@@ -72,7 +78,7 @@ export default class UserList extends Component {
                             }, {
                                 title: '操作',
                                 dataIndex: '',
-                                render: () => <a href="#">修改</a>
+                                render: (key) => <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
                             },
                         ]
                     }

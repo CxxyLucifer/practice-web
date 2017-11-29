@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Select, Button, AutoComplete } from 'antd';
 import Validator from 'util/Validator';
 
-
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -15,7 +14,19 @@ class UserAdd extends Component {
         };
     }
 
+    componentDidMount() {
+        let { type } = this.props;
+        //利用此方法可以做到新增和编辑用同一个页面
+        if (type == 'edit') {
+            this.props.form.setFieldsValue(
+                { nickname: "1111", password: "1111", confirm: "1111", class_id: "1" }
+            );
+        }
+    }
+
+
     render() {
+        let { type } = this.props;
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
             labelCol: {
@@ -56,33 +67,41 @@ class UserAdd extends Component {
                         <Input placeholder='用户名由中文、英文或者数字以及下划线组成,4-20位' />
                         )}
                 </FormItem>
+                {
+                    type == 'add' ?
+                        <FormItem
+                            {...formItemLayout}
+                            label="密码"
+                        >
+                            {getFieldDecorator('password', {
+                                rules: [
+                                    { required: true, message: '请输入密码' },
+                                    { min: 6, max: 20, message: '密码6~20位' },
+                                    { validator: this.checkConfirm }],
+                            })(
+                                <Input type="password" placeholder='请输入密码,6-20位' />
+                                )}
+                        </FormItem>
+                        : null
+                }
 
-                <FormItem
-                    {...formItemLayout}
-                    label="密码"
-                >
-                    {getFieldDecorator('password', {
-                        rules: [
-                            { required: true, message: '请输入密码' },
-                            { validator: this.checkConfirm }],
-                    })(
-                        <Input type="password" placeholder='请输入密码' />
-                        )}
-                </FormItem>
-
-                <FormItem
-                    {...formItemLayout}
-                    label="确认密码"
-                >
-                    {getFieldDecorator('confirm', {
-                        rules: [
-                            { required: true, message: '请再次输入密码' },
-                            { validator: this.checkPassword }
-                        ]
-                    })(
-                        <Input type="password" placeholder='请再次输入密码' onBlur={this.handleConfirmBlur} />
-                        )}
-                </FormItem>
+                {
+                    type == 'add' ?
+                        <FormItem
+                            {...formItemLayout}
+                            label="确认密码"
+                        >
+                            {getFieldDecorator('confirm', {
+                                rules: [
+                                    { required: true, message: '请再次输入密码' },
+                                    { validator: this.checkPassword }
+                                ]
+                            })(
+                                <Input type="password" placeholder='请再次输入密码' onBlur={this.handleConfirmBlur} />
+                                )}
+                        </FormItem>
+                        : null
+                }
 
                 <FormItem
                     {...formItemLayout}
@@ -106,10 +125,11 @@ class UserAdd extends Component {
     }
 
 
-    _handleSubmit = () => {
+    _handleSubmit = (e) => {
+        e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('======= form.values: ', values);
             }
         });
     }
@@ -137,5 +157,5 @@ class UserAdd extends Component {
     }
 }
 
-const UserAddForm = Form.create()(UserAdd);
-export default UserAddForm;
+UserAdd = Form.create()(UserAdd);
+export default UserAdd;

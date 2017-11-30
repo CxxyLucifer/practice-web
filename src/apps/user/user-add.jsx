@@ -19,7 +19,7 @@ class UserAdd extends Component {
         //利用此方法可以做到新增和编辑用同一个页面
         if (type == 'edit') {
             this.props.form.setFieldsValue(
-                { nickname: "1111", password: "1111", confirm: "1111", class_id: "1" }
+                { nickname: "1111", class_id: "1" }
             );
         }
     }

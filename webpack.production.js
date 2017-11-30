@@ -17,8 +17,8 @@ module.exports = {
     module: {
         rules: [
             { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
-            { test: /\.less$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!less-loader' }) },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader', options: { minimize: true } }] }) },
+            { test: /\.less$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader', options: { minimize: true } }, 'less-loader'] }) },
             { test: /\.(png|gif)$/, loader: 'file-loader' }
         ]
     },

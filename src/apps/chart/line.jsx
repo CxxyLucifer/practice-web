@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import echarts from 'echarts';
 
-export default class Chart extends Component {
+export default class line extends Component {
     mixins: []
     myChart: null
 

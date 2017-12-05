@@ -12,5 +12,9 @@ export default [
     {
         name: 'chart-line', path: '/chart/line', exact: true,
         render: () => System.import(/* webpackChunkName: "chart-line" */ './apps/chart/line')
+    },
+    {
+        name: 'chart-pie', path: '/chart/pie', exact: true,
+        render: () => System.import(/* webpackChunkName: "chart-pie" */ './apps/chart/pie')
     }
 ]

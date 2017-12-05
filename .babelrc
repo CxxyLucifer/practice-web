@@ -11,7 +11,8 @@
             [
                 {
                     "libraryName": "antd",
-                    "style": true
+                    "libraryDirectory": "es",
+                    "style": "css"
                 }
             ]
         ]

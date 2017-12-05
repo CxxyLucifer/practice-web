@@ -2,6 +2,13 @@ import 'whatwg-fetch';
 import { message } from 'antd';
 import objectAssign from 'object-assign';
 
+/**
+ * fetch请求工具类
+ * 
+ * @author liuhui
+ * @param {*} url 
+ * @param {*} param 
+ */
 export default function Fetch(url, param) {
     if (undefined != param && undefined != param.body) {
         param.body = JSON.stringify(param.body)

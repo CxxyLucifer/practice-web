@@ -85,6 +85,7 @@ export default class UserList extends Component {
                 />
                 <Pagination
                     className='common-pagination'
+                    style={{ margin: 16 }}
                     onChange={this._onPageChange}
                     showTotal={(total, range) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
                     defaultCurrent={1}

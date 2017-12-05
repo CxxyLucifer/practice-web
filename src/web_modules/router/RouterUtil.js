@@ -4,8 +4,6 @@ import { log } from "core-js/library/web/timers";
 
 /**
  * @method appendBundles
- * @author gcy[of1518]
- * @date 2017.06
  * @param { String } name 文件key值
  * @param { String } src 文件路径
  * @return { Promise } 返回promise对象

@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js",
-    "pro": "rm -rf dist && ./node_modules/.bin/webpack --config webpack.production.js"
+    "pro": "rm -rf dist && ./node_modules/.bin/webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "liuhui",

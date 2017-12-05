@@ -35,8 +35,8 @@ export default function Fetch(url, param) {
                 resolve(data) //返回成功数据
             })
             .catch(error => {
-                console.log(error.message)
-                reject()
+                message.warning('请求发生错误，请检查您的网络，稍后重试!');
+                reject({ err: error });
             })
     })
     return defer

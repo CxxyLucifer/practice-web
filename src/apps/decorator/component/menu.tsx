@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+
 import Util from 'util/Util';
+import { Relax, IMap } from 'plume2';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
+const noop = () => { }
 
+@Relax
 export default class menu extends Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            memuName: '用户管理',
-            subMenuKey: 'user',
-            menuKey: 'userlist'
+    props: {
+        relaxProps?: {
+            data: IMap,
+            setData: Function
         };
-    }
+    };
+
+    static relaxProps = {
+        data: "data",
+        setData: noop
+    };
 
     render() {
-        const { memuName, subMenuKey, menuKey } = this.state;
+        const { data } = this.props.relaxProps;
 
         return (
             <Sider width={165} style={{ background: '#fff' }}>
                 <Menu
                     mode="inline"
                     theme="dark"
-                    defaultSelectedKeys={[menuKey]}
-                    defaultOpenKeys={[subMenuKey]}
+                    defaultSelectedKeys={[data.get('menuKey')]}
+                    defaultOpenKeys={[data.get('subMenuKey')]}
                     style={{ height: '100%', borderRight: 0 }}
                 >
                     <SubMenu key="user" title={<span><Icon type="user" />系统管理</span>}>
@@ -46,13 +53,16 @@ export default class menu extends Component<any, any> {
     }
 
     _changeUrl = (url: string, name: string) => {
-        let { history } = this.props;
-        if (this.props.location.pathname != url) {
+        const { setData } = this.props.relaxProps;
+
+        let myProps: any = this.props;
+        let { history } = myProps;
+        if (myProps.location.pathname != url) {
             history.push(url);
         }
         let menuId = Util.ReplaceAll(url, '/', '');
         let subMenuId = url.split("/")[1];
 
-        this.setState({ memuName: name })
+        setData('memuName', name);
     }
 }

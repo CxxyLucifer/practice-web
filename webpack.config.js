@@ -37,7 +37,10 @@ module.exports = {
     },
     resolve: {
         modules: [path.resolve(__dirname, "src/web_modules"), "node_modules"],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        alias: {
+            plume2: "plume2/es5"
+        }
     },
     plugins: [
         new ExtractTextPlugin({

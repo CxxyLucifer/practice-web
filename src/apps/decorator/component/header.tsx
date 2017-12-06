@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
+import { Relax, IMap } from 'plume2';
 
+@Relax
 export default class header extends Component<any, any> {
+    props: {
+        relaxProps?: {
+            data: IMap
+        };
+    };
 
+    static relaxProps = {
+        data: "data"
+    };
+
+    componentDidMount() {
+        const { data } = this.props.relaxProps;
+    }
 
     render() {
         return (

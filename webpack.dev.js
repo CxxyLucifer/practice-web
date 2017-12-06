@@ -35,15 +35,18 @@ module.exports = {
     },
     resolve: {
         modules: [path.resolve(__dirname, "src/web_modules"), "node_modules"],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        alias: {
+            plume2: "plume2/es5"
+        }
     },
     plugins: [
         new ExtractTextPlugin({
             filename: 'bundle-[name]-[hash:5].css', disable: false, allChunks: true
         }),
         new webpack.DefinePlugin({
-            __DEBUG__: false,
-            __DEV__: false,
+            __DEBUG__: true,
+            __DEV__: true,
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         new HtmlWebpackPlugin({

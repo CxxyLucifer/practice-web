@@ -2,7 +2,7 @@
  * Created by liuhui on 2016/8/24.
  */
 
-class Util {
+export default class Util {
   static insertScript(url, callback) {
     var oScript = document.createElement("script");
     oScript.src = url;
@@ -71,4 +71,3 @@ class Util {
     return str;
   }
 }
-module.exports = Util;

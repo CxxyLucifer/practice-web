@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Breadcrumb } from 'antd';
 
-
-export default class bread extends Component {
-
+export default class bread extends Component<any, any> {
     render() {
         return (
             <Breadcrumb style={{ margin: '10px 5px' }}>

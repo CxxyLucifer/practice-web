@@ -5,8 +5,8 @@ import Util from 'util/Util';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
-export default class menu extends Component {
-    constructor(props) {
+export default class menu extends Component<any, any> {
+    constructor(props: any) {
         super(props);
         this.state = {
             memuName: '用户管理',
@@ -45,7 +45,7 @@ export default class menu extends Component {
         )
     }
 
-    _changeUrl = (url, name) => {
+    _changeUrl = (url: string, name: string) => {
         let { history } = this.props;
         if (this.props.location.pathname != url) {
             history.push(url);

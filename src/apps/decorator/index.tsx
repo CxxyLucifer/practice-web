@@ -9,12 +9,7 @@ import Bread from './component/bread';
 const { Content } = Layout;
 
 @withRouter
-export default class index extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
+export default class index extends Component<any, any> {
 
     render() {
         return (

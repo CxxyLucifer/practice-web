@@ -1,4 +1,4 @@
-import styles from './style/index.less';
+import './style/index.less';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router';
@@ -9,10 +9,13 @@ import entries from './entries';
 import Decorator from './apps/decorator';
 
 const history = createHashHistory();
+let ChunkContainerLay: any = ChunkContainer;
 
-class App extends Component {
+class App extends Component<any, any> {
 
     render() {
+
+
         return (
             <Router history={history}>
                 <Decorator>
@@ -20,7 +23,7 @@ class App extends Component {
                         <Route exact path="/" render={() => (
                             <Redirect to="/user/list" />
                         )} />
-                        <ChunkContainer entries={entries} />
+                        <ChunkContainerLay entries={entries} />
                     </div>
                 </Decorator>
             </Router>

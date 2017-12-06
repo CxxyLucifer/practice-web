@@ -19,7 +19,6 @@ export default class UserList extends Component {
     }
 
     componentWillMount() {
-
         this._init(1, 10);
     }
 

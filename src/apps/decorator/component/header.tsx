@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 
-export default class header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
+export default class header extends Component<any, any> {
+
 
     render() {
         return (

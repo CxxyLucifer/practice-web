@@ -7,7 +7,7 @@ const { version } = require('./package.json') || {};
 
 module.exports = {
     entry: {
-        app: "./src/pro.js" //在源文件目录下去找index.js 文件作为打包的入口文件
+        app: "./src/pro.tsx" //在源文件目录下去找index.js 文件作为打包的入口文件
     },
     output: {
         path: path.resolve(__dirname + `/dist/${version}`), //生成的文件存放目录
@@ -16,6 +16,19 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        }
+                    }
+                ]
+            },
             { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
             { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader', options: { minimize: true } }] }) },
             { test: /\.less$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader', options: { minimize: true } }, 'less-loader'] }) },

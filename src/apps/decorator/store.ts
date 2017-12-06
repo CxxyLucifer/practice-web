@@ -5,7 +5,9 @@
 import { Store, IOptions, msg } from 'plume2';
 import DecoreActor from './actor/decore-actor';
 
-const myStorage: any = window.localStorage;
+//localStorage永久存储不过期，除非手动清除
+//sessionStorage浏览器关闭随即过期
+const myStorage: any = window.sessionStorage;
 
 export default class AppStore extends Store {
     constructor(props: IOptions) {

@@ -71,7 +71,7 @@ export default class menu extends Component<any, any> {
         let subMenuId = url.split("/")[1];
         updateCache('menuKey', menuId);
         updateCache('subMenuKey', subMenuId);
-
+        updateCache('memuName', name);
         setData('memuName', name);
     }
 

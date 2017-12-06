@@ -9,13 +9,10 @@ import entries from './entries';
 import Decorator from './apps/decorator';
 
 const history = createHashHistory();
-let ChunkContainerLay: any = ChunkContainer;
+const ChunkContainerLay: any = ChunkContainer;
 
 class App extends Component<any, any> {
-
     render() {
-
-
         return (
             <Router history={history}>
                 <Decorator>

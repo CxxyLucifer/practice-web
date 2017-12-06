@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { ChunkContainer } from 'router';
 import entries from './entries';
 
-let ChunkContainerLay: any = ChunkContainer;
+const ChunkContainerLay: any = ChunkContainer;
 
 class App extends Component<any, any> {
     render() {

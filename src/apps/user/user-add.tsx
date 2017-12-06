@@ -6,8 +6,13 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-class UserAdd extends Component {
-    constructor(props) {
+export interface UserAddProps {
+    type?: string;
+    form?: any
+}
+
+class UserAdd extends Component<UserAddProps, any>{
+    constructor(props: UserAddProps) {
         super(props);
         this.state = {
             confirmDirty: false,
@@ -125,21 +130,21 @@ class UserAdd extends Component {
     }
 
 
-    _handleSubmit = (e) => {
+    _handleSubmit = (e: any) => {
         e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
+        this.props.form.validateFieldsAndScroll((err: any, values: any) => {
             if (!err) {
                 console.log('======= form.values: ', values);
             }
         });
     }
 
-    handleConfirmBlur = (e) => {
+    handleConfirmBlur = (e: any) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
 
-    checkPassword = (rule, value, callback) => {
+    checkPassword = (rule: any, value: any, callback: any) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
             callback('密码不一致!');
@@ -148,7 +153,7 @@ class UserAdd extends Component {
         }
     }
 
-    checkConfirm = (rule, value, callback) => {
+    checkConfirm = (rule: any, value: any, callback: any) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
             form.validateFields(['confirm'], { force: true });
@@ -156,6 +161,6 @@ class UserAdd extends Component {
         callback();
     }
 }
-
-UserAdd = Form.create()(UserAdd);
-export default UserAdd;
+const MyUserAdd: any = UserAdd;
+const UserAddForm = Form.create()(MyUserAdd);
+export default UserAddForm;

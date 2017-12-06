@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Table, Button, Pagination, Modal } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
-
 import UserAdd from './user-add';
 
+const MyPagination: any = Pagination;
+const MyUserAdd: any = UserAdd;
 const ModalIndex = "user";
 
-export default class UserList extends Component {
-    constructor(props) {
+export default class UserList extends Component<any, any> {
+    constructor(props: any) {
         super(props);
         this.state = {
             data: [],
@@ -22,26 +23,27 @@ export default class UserList extends Component {
         this._init(1, 10);
     }
 
-    _init = (currentPage, pageSize) => {
-        const _this = this;
-        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize).then((json) => {
+    _init = (currentPage: number, pageSize: number) => {
+        const _self = this;
+        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize).then((json: any) => {
             //console.log('=====json:', json)
-            _this.setState({ data: json.data, total: json.totalCount });
+            _self.setState({ data: json.data, total: json.totalCount });
         })
     }
 
     _showAdd = () => {
-        Dialog.load(<UserAdd type='add' />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
+        Dialog.load(<MyUserAdd type='add' />, { title: "新增", ModalIndex, width: 720, className: 'modal-custom' }).then((res: any) => {
         })
     }
 
     _showEdit = () => {
-        Dialog.load(<UserAdd type='edit' />, { title: "编辑", ModalIndex, width: 720, className: 'modal-custom' }).then((res) => {
+        Dialog.load(<MyUserAdd type='edit' />, { title: "编辑", ModalIndex, width: 720, className: 'modal-custom' }).then((res: any) => {
         })
     }
 
     render() {
         const { data, loading, selectedRowKeys, total } = this.state;
+
         const rowSelection = {
             selectedRowKeys,
             onChange: this._onSelectChange,
@@ -82,11 +84,11 @@ export default class UserList extends Component {
                         ]
                     }
                 />
-                <Pagination
+                <MyPagination
                     className='common-pagination'
                     style={{ margin: 16 }}
                     onChange={this._onPageChange}
-                    showTotal={(total, range) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
+                    showTotal={(total: number, range: any) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
                     defaultCurrent={1}
                     defaultPageSize={10}
                     total={total}
@@ -97,15 +99,15 @@ export default class UserList extends Component {
     }
 
 
-    _onPageChange = (currentPage, pageSize) => {
+    _onPageChange = (currentPage: number, pageSize: number) => {
         this._init(currentPage, pageSize);
     }
 
-    _onSelectChange = (selectedRowKeys) => {
+    _onSelectChange = (selectedRowKeys: any) => {
         this.setState({ selectedRowKeys });
     }
 
-    _itemRender(current, type, originalElement) {
+    _itemRender(current: number, type: any, originalElement: any) {
         if (type === 'prev') {
             return <a>上一页</a>;
         } else if (type === 'next') {

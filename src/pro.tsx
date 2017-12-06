@@ -6,7 +6,7 @@ import entries from './entries';
 
 let ChunkContainerLay: any = ChunkContainer;
 
-class App extends Component {
+class App extends Component<any, any> {
     render() {
         return (
             <ChunkContainerLay entries={entries} />

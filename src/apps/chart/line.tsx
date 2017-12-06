@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import echarts from 'echarts';
 
-export default class line extends Component {
-    mixins: []
-    myChart: null
+export default class line extends Component<any, any> {
+    mixins: any
+    myChart: any
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.state = {
             name: 'chart',              //图表唯一约束
@@ -17,13 +17,13 @@ export default class line extends Component {
     }
 
     componentDidMount() {
-        let _this = this;
+        let _self = this;
         this._init();
 
         //浏览器大小改变时重置大小
         window.onresize = function () {
-            _this._myChartContainer();
-            _this.myChart.resize();
+            _self._myChartContainer();
+            _self.myChart.resize();
         };
     }
 

@@ -9,7 +9,7 @@ import objectAssign from 'object-assign';
  * @param {*} url 
  * @param {*} param 
  */
-export default function Fetch(url, param) {
+export default function Fetch(url: string, param?: any) {
     if (undefined != param && undefined != param.body) {
         param.body = JSON.stringify(param.body)
     }
@@ -26,7 +26,6 @@ export default function Fetch(url, param) {
                     return response.json()
                 } else {
                     var error = new Error(response.statusText)
-                    error.response = response
                     // throw error
                     message.warning('请求发生错误:' + error)
                 }

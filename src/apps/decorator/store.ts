@@ -5,6 +5,8 @@
 import { Store, IOptions, msg } from 'plume2';
 import DecoreActor from './actor/decore-actor';
 
+const myStorage: any = window.localStorage;
+
 export default class AppStore extends Store {
     constructor(props: IOptions) {
         super(props);
@@ -23,4 +25,11 @@ export default class AppStore extends Store {
         this.dispatch('decoreActor:setData', { name, value });
     }
 
+    updateCache = (key: string, value: any) => {
+        myStorage.setItem(key, value);
+    }
+
+    getCache = (key: string) => {
+        return myStorage.getItem(key);
+    }
 }

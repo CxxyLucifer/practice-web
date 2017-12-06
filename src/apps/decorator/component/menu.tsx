@@ -13,25 +13,32 @@ export default class menu extends Component<any, any> {
     props: {
         relaxProps?: {
             data: IMap,
-            setData: Function
+            setData: Function,
+            updateCache: Function,
+            getCache: Function
         };
     };
 
     static relaxProps = {
         data: "data",
-        setData: noop
+        setData: noop,
+        updateCache: noop,
+        getCache: noop
     };
 
     render() {
         const { data } = this.props.relaxProps;
+
+        let menuKey = Util.isNotEmpty(this._getChache('menuKey')) ? this._getChache('menuKey') : data.get('menuKey');
+        let subMenuKey = Util.isNotEmpty(this._getChache('subMenuKey')) ? this._getChache('subMenuKey') : data.get('subMenuKey');
 
         return (
             <Sider width={165} style={{ background: '#fff' }}>
                 <Menu
                     mode="inline"
                     theme="dark"
-                    defaultSelectedKeys={[data.get('menuKey')]}
-                    defaultOpenKeys={[data.get('subMenuKey')]}
+                    defaultSelectedKeys={[menuKey]}
+                    defaultOpenKeys={[subMenuKey]}
                     style={{ height: '100%', borderRight: 0 }}
                 >
                     <SubMenu key="user" title={<span><Icon type="user" />系统管理</span>}>
@@ -53,7 +60,7 @@ export default class menu extends Component<any, any> {
     }
 
     _changeUrl = (url: string, name: string) => {
-        const { setData } = this.props.relaxProps;
+        const { setData, updateCache } = this.props.relaxProps;
 
         let myProps: any = this.props;
         let { history } = myProps;
@@ -62,7 +69,14 @@ export default class menu extends Component<any, any> {
         }
         let menuId = Util.ReplaceAll(url, '/', '');
         let subMenuId = url.split("/")[1];
+        updateCache('menuKey', menuId);
+        updateCache('subMenuKey', subMenuId);
 
         setData('memuName', name);
+    }
+
+    _getChache = (key: string) => {
+        const { getCache } = this.props.relaxProps;
+        return getCache(key);
     }
 }

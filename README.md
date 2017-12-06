@@ -1,5 +1,5 @@
 # shop-web
-react + webpack + babel + ES6 + antd
+react + webpack + babel + es6 + plume2 + antd
 
 shop 项目为服务端，先本地运行shop项目再运行shop-web项目
 

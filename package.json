@@ -13,6 +13,7 @@
   "dependencies": {
     "antd": "^3.0.0",
     "echarts": "^3.8.5",
+    "immutable": "^3.8.2",
     "object-assign": "^4.1.1",
     "plume2": "^0.2.2",
     "react": "^16.1.1",

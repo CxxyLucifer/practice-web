@@ -25,10 +25,13 @@ export default class UserList extends Component<any, any> {
 
     _init = (currentPage: number, pageSize: number) => {
         const _self = this;
-        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize).then((json: any) => {
-            //console.log('=====json:', json)
-            _self.setState({ data: json.data, total: json.totalCount });
-        })
+        _self.setState({ loading: true });
+        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize)
+            .then((json: any) => {
+                _self.setState({ data: json.data, total: json.totalCount, loading: false });
+            }).catch((err: any) => {
+                _self.setState({ loading: false });
+            })
     }
 
     _showAdd = () => {
@@ -64,8 +67,11 @@ export default class UserList extends Component<any, any> {
                     </span>
                 </div>
                 <Table
+                    className="comom-table"
                     size="middle"
+                    locale={{ emptyText: '暂无数据' }}
                     dataSource={data}
+                    loading={loading}
                     pagination={false}
                     rowSelection={rowSelection}
                     columns={

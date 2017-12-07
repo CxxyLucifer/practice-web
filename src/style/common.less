@@ -15,6 +15,10 @@ html, body {
     float: right;
 }
 
+/*======= table ===========*/
+.comom-table td,th,span,a{
+    font-size: 12
+}
 /*======= logo ===========*/
 .menu-logo {
   height: 64px;
@@ -46,6 +50,12 @@ html, body {
 }
 
 .header-right-wrap ul{
+    height:100%;
+    padding:0;
+    margin: 0;
+}
+
+.header-right-wrap li{
     padding:0;
     margin: 0;
 }
@@ -57,7 +67,6 @@ html, body {
 
  .header-item {
     height: 64px;
-    line-height: 64px;
     display: inline-block;
     vertical-align: middle;
     color: #999;
@@ -69,6 +78,7 @@ html, body {
     padding: 0 15px;
     font-size: 0;
     height: 64px;
+    margin-top: -1px;
     padding-right: 5px;
     cursor: pointer;
     transition: color 0.3s;
@@ -76,7 +86,9 @@ html, body {
 
 .user-info-item:hover{
     background-color: #f9f9f9;
-    color: #1890ff;
+    .user-name,.user-role{
+        color: #1890ff;
+    }
 }
 
 .avatar-box {
@@ -116,4 +128,5 @@ html, body {
 
 .user-role {
     font-size: 12px;
+    color: #999;
 }

@@ -64,6 +64,7 @@ export default class UserList extends Component<any, any> {
                     </span>
                 </div>
                 <Table
+                    size="middle"
                     dataSource={data}
                     pagination={false}
                     rowSelection={rowSelection}

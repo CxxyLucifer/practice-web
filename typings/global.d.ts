@@ -7,7 +7,6 @@ declare module 'object-assign';
 declare module 'echarts';
 
 declare const __DEV__: boolean;
-declare const myStorage: any;
 
 interface Window {
     _store: any;

@@ -21,7 +21,7 @@ export default class bread extends Component<any, any> {
 
     render() {
         const { data } = this.props.relaxProps;
-        let memuName = Util.isNotEmpty(this._getChache('memuName')) ? this._getChache('memuName') : data.get('memuName');
+        let memuName = this._get('memuName');
 
         return (
             <Breadcrumb style={{ margin: '10px 5px' }}>
@@ -30,8 +30,9 @@ export default class bread extends Component<any, any> {
         )
     }
 
-    _getChache = (key: string) => {
-        const { getCache } = this.props.relaxProps;
-        return getCache(key);
+    _get = (key: string) => {
+        const { data, getCache } = this.props.relaxProps;
+
+        return Util.isNotEmpty(getCache(key)) ? getCache(key) : data.get(key);
     }
 }

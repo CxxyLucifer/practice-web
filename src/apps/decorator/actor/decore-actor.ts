@@ -9,7 +9,8 @@ export default class DecoreActor extends Actor {
             data: {
                 memuName: '用户管理',
                 subMenuKey: 'user',
-                menuKey: 'userlist'
+                menuKey: 'userlist',
+                collapsed: false,
             }
         }
     }

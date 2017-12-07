@@ -29,11 +29,17 @@ export default class menu extends Component<any, any> {
     render() {
         const { data } = this.props.relaxProps;
 
-        let menuKey = Util.isNotEmpty(this._getChache('menuKey')) ? this._getChache('menuKey') : data.get('menuKey');
-        let subMenuKey = Util.isNotEmpty(this._getChache('subMenuKey')) ? this._getChache('subMenuKey') : data.get('subMenuKey');
+        let menuKey = this._get('menuKey');
+        let subMenuKey = this._get('subMenuKey');
+        let collapsed = this._get('collapsed');
 
         return (
-            <Sider width={165} style={{ background: '#fff' }}>
+            <Sider style={{ background: '#00152a', overflow: 'auto' }}
+                trigger={null}
+                collapsible
+                collapsed={collapsed == 'true'}
+            >
+                <div className="menu-logo" />
                 <Menu
                     mode="inline"
                     theme="dark"
@@ -41,12 +47,12 @@ export default class menu extends Component<any, any> {
                     defaultOpenKeys={[subMenuKey]}
                     style={{ height: '100%', borderRight: 0 }}
                 >
-                    <SubMenu key="user" title={<span><Icon type="user" />系统管理</span>}>
+                    <SubMenu key="user" title={<span><Icon type="user" /><span>系统管理</span></span>}>
                         <Menu.Item key="userlist">
                             <a href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu key="chart" title={<span><Icon type="laptop" />图表</span>}>
+                    <SubMenu key="chart" title={<span><Icon type="laptop" /><span>图表</span></span>}>
                         <Menu.Item key="chartline">
                             <a href='javascript:void(0)' onClick={() => this._changeUrl('/chart/line', '折线图')}>折线图</a>
                         </Menu.Item>
@@ -75,8 +81,8 @@ export default class menu extends Component<any, any> {
         setData('memuName', name);
     }
 
-    _getChache = (key: string) => {
-        const { getCache } = this.props.relaxProps;
-        return getCache(key);
+    _get = (key: string) => {
+        const { data, getCache } = this.props.relaxProps;
+        return Util.isNotEmpty(getCache(key)) ? getCache(key) : data.get(key);
     }
 }

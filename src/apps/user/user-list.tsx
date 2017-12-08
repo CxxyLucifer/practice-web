@@ -26,12 +26,17 @@ export default class UserList extends Component<any, any> {
     _init = (currentPage: number, pageSize: number) => {
         const _self = this;
         _self.setState({ loading: true });
-        Fetch('http://127.0.0.1:8080/user/getUserListByName?pageNum=' + (currentPage - 1) + '&pageSize=' + pageSize)
-            .then((json: any) => {
-                _self.setState({ data: json.data, total: json.totalCount, loading: false });
-            }).catch((err: any) => {
-                _self.setState({ loading: false });
-            })
+        Fetch('http://127.0.0.1:8080/user/getUserListByName', {
+            method: 'post',
+            body: {
+                pageNum: currentPage - 1,
+                pageSize: pageSize
+            }
+        }).then((json: any) => {
+            _self.setState({ data: json.data, total: json.totalCount, loading: false });
+        }).catch((err: any) => {
+            _self.setState({ loading: false });
+        })
     }
 
     _showAdd = () => {

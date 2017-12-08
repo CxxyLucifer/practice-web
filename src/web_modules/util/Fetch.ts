@@ -14,29 +14,56 @@ export default function Fetch(url: string, param?: any) {
         param.body = JSON.stringify(param.body)
     }
     let req = {
+        method: 'get',
+        credentials: 'include',
+        mode: 'cors',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
+            'Content-Type': 'application/json'
+        },
     };
-    const defer = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
+        let success: boolean;
         fetch(url, objectAssign(req, param))
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
-                    return response.json()
+                    success = true;
                 } else {
-                    var error = new Error(response.statusText)
-                    // throw error
-                    message.warning('请求发生错误:' + error)
+                    success = false;
                 }
+                return response.json()
             })
             .then(data => {
-                resolve(data) //返回成功数据
+                if (success) {
+                    resolve(data)
+                } else {
+                    solveMessge(data);
+                    reject(data);
+                }
             })
             .catch(error => {
-                message.warning('请求发生错误，请检查您的网络，稍后重试!');
-                reject({ err: error });
+                message.warning('请求发生错误，稍后重试!');
+                reject(error);
             })
     })
-    return defer
+    return promise
+}
+
+
+function solveMessge(data: any) {
+    switch (data.status) {
+        //处理后端实体验证报的message信息
+        case 400:
+            for (let { defaultMessage } of data.errors) {
+                message.warning(defaultMessage);
+                break;
+            }
+            break;
+        //处理后端通过 throw new Exception("参数异常") 抛的异常
+        case 500:
+            message.warning(data.message);
+            break;
+        default:
+            break;
+    }
 }

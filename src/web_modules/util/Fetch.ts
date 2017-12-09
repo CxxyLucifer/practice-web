@@ -15,8 +15,6 @@ export default function Fetch(url: string, param?: any) {
     }
     let req = {
         method: 'get',
-        credentials: 'include',
-        mode: 'cors',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -26,7 +24,7 @@ export default function Fetch(url: string, param?: any) {
         let success: boolean;
         fetch(url, objectAssign(req, param))
             .then(response => {
-                if (response.status >= 200 && response.status < 300) {
+                if (response.ok) {
                     success = true;
                 } else {
                     success = false;

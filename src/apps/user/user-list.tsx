@@ -60,7 +60,7 @@ export default class UserList extends Component<any, any> {
 
         return (
             <div>
-                <div style={{ marginBottom: 16, marginTop: 16, marginLeft: 16 }}>
+                <div style={{ marginBottom: 10, marginLeft: 10 }}>
                     <Button
                         type="primary"
                         onClick={() => this._showAdd()}
@@ -72,7 +72,6 @@ export default class UserList extends Component<any, any> {
                     </span>
                 </div>
                 <Table
-                    className="comom-table"
                     size="middle"
                     locale={{ emptyText: '暂无数据' }}
                     dataSource={data}
@@ -98,7 +97,7 @@ export default class UserList extends Component<any, any> {
                 />
                 <MyPagination
                     className='common-pagination'
-                    style={{ margin: 16 }}
+                    style={{ margin: 16, fontSize: 12 }}
                     onChange={this._onPageChange}
                     showTotal={(total: number, range: any) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
                     defaultCurrent={1}

@@ -62,7 +62,7 @@ class UserAdd extends Component<UserAddProps, any>{
                     {...formItemLayout}
                     label="用户名"
                 >
-                    {getFieldDecorator('nickname', {
+                    {getFieldDecorator('userName', {
                         rules: [
                             { required: true, message: '请输入用户名', whitespace: true },
                             { min: 4, max: 20, message: '用户名4~20位' },

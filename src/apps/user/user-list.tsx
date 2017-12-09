@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination, Modal } from 'antd';
+import { Table, Button, Pagination, Modal, Divider, Modal } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
@@ -49,11 +49,28 @@ export default class UserList extends Component<any, any> {
         })
     }
 
+    _toDel = (record: any) => {
+        console.log('record:', record)
+        Modal.confirm({
+            title: '提示',
+            content: '您确定删除该条记录吗？',
+            okText: '确认',
+            cancelText: '取消',
+            onOk() {
+                console.log('OK');
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    }
+
     render() {
         const { data, loading, selectedRowKeys, total } = this.state;
 
         const rowSelection = {
             selectedRowKeys,
+            fixed: true,
             onChange: this._onSelectChange,
         };
         const hasSelected = selectedRowKeys.length > 0;
@@ -62,12 +79,14 @@ export default class UserList extends Component<any, any> {
             <div>
                 <div style={{ marginBottom: 10, marginLeft: 10 }}>
                     <Button
+                        style={{ fontSize: 12 }}
                         type="primary"
+                        size="default"
                         onClick={() => this._showAdd()}
                     >
                         新增
                     </Button>
-                    <span style={{ marginLeft: 8 }}>
+                    <span style={{ marginLeft: 8, fontSize: 12 }}>
                         {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
                     </span>
                 </div>
@@ -81,16 +100,26 @@ export default class UserList extends Component<any, any> {
                     columns={
                         [
                             {
+                                className: 'table-column',
                                 title: '用户名',
                                 dataIndex: 'user_name',
                                 width: 200
                             }, {
+                                className: 'table-column',
                                 title: '班级',
                                 dataIndex: 'class_name',
                             }, {
+                                className: 'table-column',
                                 title: '操作',
                                 dataIndex: '',
-                                render: (key) => <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
+                                width: 200,
+                                render: (record) => (
+                                    <span>
+                                        <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
+                                        <Divider type="vertical" />
+                                        <a href="javascript:void(0)" onClick={() => this._toDel(record)}>删除</a>
+                                    </span>
+                                )
                             },
                         ]
                     }

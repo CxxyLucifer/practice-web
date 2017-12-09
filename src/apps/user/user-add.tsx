@@ -24,7 +24,7 @@ class UserAdd extends Component<UserAddProps, any>{
         //利用此方法可以做到新增和编辑用同一个页面
         if (type == 'edit') {
             this.props.form.setFieldsValue(
-                { nickname: "1111", class_id: "1" }
+                { userName: "1111", class_id: "1" }
             );
         }
     }
@@ -47,17 +47,18 @@ class UserAdd extends Component<UserAddProps, any>{
             wrapperCol: {
                 xs: {
                     span: 24,
-                    offset: 0,
+                    offset: 0
                 },
                 sm: {
                     span: 14,
-                    offset: 6,
+                    offset: 6
                 },
             },
         };
 
         return (
-            <Form onSubmit={this._handleSubmit}>
+            <Form
+                onSubmit={this._handleSubmit}>
                 <FormItem
                     {...formItemLayout}
                     label="用户名"

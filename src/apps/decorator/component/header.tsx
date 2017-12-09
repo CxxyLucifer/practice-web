@@ -1,3 +1,6 @@
+/**
+ * Created by liuhui on 2017/12/6.
+ */
 import React, { Component } from 'react';
 import { Layout, Icon } from 'antd';
 import { Relax, IMap } from 'plume2';

@@ -7,7 +7,7 @@ import HeaderLay from './component/header';
 import MenuLay from './component/menu';
 import Bread from './component/bread';
 import { StoreProvider } from 'plume2';
-import AppStore from "./store";
+import AppStore from './store';
 
 const { Content } = Layout;
 const MyMenuLay: any = MenuLay;

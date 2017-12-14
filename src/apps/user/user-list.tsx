@@ -3,6 +3,7 @@ import { Table, Button, Pagination, Modal, Divider } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
+import { MyIcon } from 'comps';
 
 const MyPagination: any = Pagination;
 const MyUserAdd: any = UserAdd;
@@ -85,6 +86,7 @@ export default class UserList extends Component<any, any> {
                     >
                         新增
                     </Button>
+                    <MyIcon type="icon-folder-close" style={{ marginLeft: 10 }} />
                     <span style={{ marginLeft: 8, fontSize: 12 }}>
                         {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
                     </span>
@@ -127,11 +129,12 @@ export default class UserList extends Component<any, any> {
                     className='common-pagination'
                     style={{ margin: 16, fontSize: 12 }}
                     onChange={this._onPageChange}
-                    showTotal={(total: number, range: any) => `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条`}
+                    showTotal={(total: number, range: any) => {
+                        return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
+                    }}
                     defaultCurrent={1}
                     defaultPageSize={10}
                     total={total}
-                    itemRender={this._itemRender}
                     showQuickJumper />
             </div>
         );
@@ -144,14 +147,5 @@ export default class UserList extends Component<any, any> {
 
     _onSelectChange = (selectedRowKeys: any) => {
         this.setState({ selectedRowKeys });
-    }
-
-    _itemRender(current: number, type: any, originalElement: any) {
-        if (type === 'prev') {
-            return <a>上一页</a>;
-        } else if (type === 'next') {
-            return <a>下一页</a>;
-        }
-        return originalElement;
     }
 }

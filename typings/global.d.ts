@@ -1,5 +1,7 @@
 declare module 'router';
 
+declare module 'comps';
+
 declare module 'util/Util';
 
 declare module 'util/Fetch';

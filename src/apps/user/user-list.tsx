@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination, Modal, Divider, Modal } from 'antd';
+import { Table, Button, Pagination, Modal, Divider } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
@@ -50,7 +50,6 @@ export default class UserList extends Component<any, any> {
     }
 
     _toDel = (record: any) => {
-        console.log('record:', record)
         Modal.confirm({
             title: '提示',
             content: '您确定删除该条记录吗？',

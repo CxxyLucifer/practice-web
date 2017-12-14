@@ -8,7 +8,7 @@ import { Modal } from "antd";
 import { splitObject } from "./ObjectUtil";
 import QMModal from './Modal';
 
-const QMDialog = {
+const Dialog = {
   nodes: {},
   props: {
     title: "", //标题	React.Element	|| 'string'
@@ -65,7 +65,7 @@ const QMDialog = {
   /**
    *  侧边弹窗 
    *  
-   * QMDialog.side(
+   * Dialog.side(
    *      <Test />
    *    ).then(res => {
    *       console.log("res:", res);
@@ -117,12 +117,12 @@ const QMDialog = {
    */
   close(arg, index, resolve) {
     if (!!index) {
-      removeNode(QMDialog.nodes[index]);
+      removeNode(Dialog.nodes[index]);
     }
     if (resolve != undefined) {
       resolve(arg);
     }
-    delete QMDialog.nodes[index];
+    delete Dialog.nodes[index];
     function removeNode(node) {
       const unmountResult = ReactDOM.unmountComponentAtNode(node);
       if (unmountResult) {
@@ -140,4 +140,4 @@ const QMDialog = {
   openUrl() { }
 };
 
-export default QMDialog;
+export default Dialog;

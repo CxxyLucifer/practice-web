@@ -9,7 +9,7 @@ import entries from './entries';
 import Decorator from './apps/decorator';
 
 const history = createHashHistory();
-const ChunkContainerLay: any = ChunkContainer;
+const MyChunkContainer: any = ChunkContainer;
 
 class App extends Component<any, any> {
     render() {
@@ -20,12 +20,11 @@ class App extends Component<any, any> {
                         <Route exact path="/" render={() => (
                             <Redirect to="/user/list" />
                         )} />
-                        <ChunkContainerLay entries={entries} />
+                        <MyChunkContainer entries={entries} />
                     </div>
                 </Decorator>
             </Router>
         )
     }
 }
-
 render(<App />, document.getElementById("content"))

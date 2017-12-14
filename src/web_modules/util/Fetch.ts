@@ -9,7 +9,7 @@ import objectAssign from 'object-assign';
  * @param {*} url 
  * @param {*} param 
  */
-export default function Fetch(url: string, param?: any) {
+const Fetch = (url: string, param?: any) => {
     if (undefined != param && undefined != param.body) {
         param.body = JSON.stringify(param.body)
     }
@@ -17,7 +17,7 @@ export default function Fetch(url: string, param?: any) {
         method: 'get',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
     };
     const promise = new Promise((resolve, reject) => {
@@ -47,21 +47,25 @@ export default function Fetch(url: string, param?: any) {
     return promise
 }
 
-
-function solveMessge(data: any) {
+/**
+ * 处理服务端的异常信息
+ * @param data 
+ */
+const solveMessge = (data: any) => {
     switch (data.status) {
-        //处理后端实体验证报的message信息
-        case 400:
+        case 400:       //处理后端实体验证报的message信息
             for (let { defaultMessage } of data.errors) {
                 message.warning(defaultMessage);
                 break;
             }
             break;
-        //处理后端通过 throw new Exception("参数异常") 抛的异常
-        case 500:
-            message.warning(data.message);
+        case 500:       //处理后端通过 throw new Exception("参数异常") 抛的异常
+            if (undefined != data.message) {
+                message.warning(data.message);
+            }
             break;
         default:
             break;
     }
 }
+export default Fetch;

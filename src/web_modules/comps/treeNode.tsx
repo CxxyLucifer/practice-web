@@ -63,7 +63,7 @@ export default class TreeNode extends React.Component {
         return (
             <div className={mouseOver ? "" : "hideBtn"} onMouseOver={(e) => { this.setState({ mouseOver: true }) }} onMouseLeave={(e) => { this.setState({ mouseOver: false }) }}>
                 {
-                    leaf ? <MyIcon type="icon-folder-close" /> : <MyIcon type="icon-folder-close" />
+                    // leaf ? <MyIcon type="icon-folder-close" /> : <MyIcon type="icon-folder-close" />
                 }
                 {
                     editState ?

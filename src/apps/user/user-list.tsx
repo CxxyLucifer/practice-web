@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination, Modal, Divider } from 'antd';
+import { Table, Button, Pagination, Modal, Divider, Layout, Divider } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
 import { MyIcon } from 'comps';
 
+import ClassTree from './component/class-tree';
+
+const { Sider } = Layout;
 const MyPagination: any = Pagination;
 const MyUserAdd: any = UserAdd;
 const ModalIndex = "user";
@@ -76,11 +79,12 @@ export default class UserList extends Component<any, any> {
         const hasSelected = selectedRowKeys.length > 0;
 
         return (
-            <div className="goal-setting">
-                <div className="folder-tree">
-
-                </div>
-                <div className="goal-container">
+            <Layout>
+                <Sider style={{ background: 'white' }}>
+                    <ClassTree />
+                </Sider>
+                <div style={{ width: 1, borderWidth: 1, borderColor: 'grey', height: '100%' }} />
+                <Layout style={{ backgroundColor: 'white', paddingLeft: 10, borderLeftWidth: 1, borderLeftColor: '#e8e8e8' }}>
                     <div style={{ marginBottom: 10, marginLeft: 10 }}>
                         <Button
                             style={{ fontSize: 12 }}
@@ -89,8 +93,8 @@ export default class UserList extends Component<any, any> {
                             onClick={() => this._showAdd()}
                         >
                             新增
-                    </Button>
-                        <MyIcon type="icon-folder-close" style={{ marginLeft: 10, color: 'blue' }} />
+                        </Button>
+                        {/* <MyIcon type="icon-folder-close" style={{ marginLeft: 10, color: 'blue' }} /> */}
                         <span style={{ marginLeft: 8, fontSize: 12 }}>
                             {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
                         </span>
@@ -131,7 +135,7 @@ export default class UserList extends Component<any, any> {
                     />
                     <MyPagination
                         className='common-pagination'
-                        style={{ margin: 16, fontSize: 12 }}
+                        style={{ margin: 16, fontSize: 12, float: 'right' }}
                         onChange={this._onPageChange}
                         showTotal={(total: number, range: any) => {
                             return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
@@ -140,8 +144,8 @@ export default class UserList extends Component<any, any> {
                         defaultPageSize={10}
                         total={total}
                         showQuickJumper />
-                </div>
-            </div>
+                </Layout>
+            </Layout>
         );
     }
 

@@ -40,7 +40,7 @@ const Fetch = (url: string, param?: any) => {
                 }
             })
             .catch(error => {
-                message.warning('请求发生错误，请稍后重试!');
+                message.warning('请求失败，请稍后重试');
                 reject(error);
             })
     })

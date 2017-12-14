@@ -27,11 +27,11 @@ export default class UserList extends Component<any, any> {
     _init = (currentPage: number, pageSize: number) => {
         const _self = this;
         _self.setState({ loading: true });
-        Fetch('http://127.0.0.1:8080/user/getUserListByName', {
+        Fetch('http://127.0.0.1:8080/user/getUserList', {
             method: 'post',
             body: {
                 pageNum: currentPage - 1,
-                pageSize: pageSize
+                pageSize: pageSize,
             }
         }).then((json: any) => {
             _self.setState({ data: json.data, total: json.totalCount, loading: false });
@@ -76,66 +76,71 @@ export default class UserList extends Component<any, any> {
         const hasSelected = selectedRowKeys.length > 0;
 
         return (
-            <div>
-                <div style={{ marginBottom: 10, marginLeft: 10 }}>
-                    <Button
-                        style={{ fontSize: 12 }}
-                        type="primary"
-                        size="default"
-                        onClick={() => this._showAdd()}
-                    >
-                        新增
-                    </Button>
-                    <MyIcon type="icon-folder-close" style={{ marginLeft: 10 }} />
-                    <span style={{ marginLeft: 8, fontSize: 12 }}>
-                        {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
-                    </span>
+            <div className="goal-setting">
+                <div className="folder-tree">
+
                 </div>
-                <Table
-                    size="middle"
-                    locale={{ emptyText: '暂无数据' }}
-                    dataSource={data}
-                    loading={loading}
-                    pagination={false}
-                    rowSelection={rowSelection}
-                    columns={
-                        [
-                            {
-                                className: 'table-column',
-                                title: '用户名',
-                                dataIndex: 'user_name',
-                                width: 200
-                            }, {
-                                className: 'table-column',
-                                title: '班级',
-                                dataIndex: 'class_name',
-                            }, {
-                                className: 'table-column',
-                                title: '操作',
-                                dataIndex: '',
-                                width: 200,
-                                render: (record) => (
-                                    <span>
-                                        <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
-                                        <Divider type="vertical" />
-                                        <a href="javascript:void(0)" onClick={() => this._toDel(record)}>删除</a>
-                                    </span>
-                                )
-                            },
-                        ]
-                    }
-                />
-                <MyPagination
-                    className='common-pagination'
-                    style={{ margin: 16, fontSize: 12 }}
-                    onChange={this._onPageChange}
-                    showTotal={(total: number, range: any) => {
-                        return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
-                    }}
-                    defaultCurrent={1}
-                    defaultPageSize={10}
-                    total={total}
-                    showQuickJumper />
+                <div className="goal-container">
+                    <div style={{ marginBottom: 10, marginLeft: 10 }}>
+                        <Button
+                            style={{ fontSize: 12 }}
+                            type="primary"
+                            size="default"
+                            onClick={() => this._showAdd()}
+                        >
+                            新增
+                    </Button>
+                        <MyIcon type="icon-folder-close" style={{ marginLeft: 10, color: 'blue' }} />
+                        <span style={{ marginLeft: 8, fontSize: 12 }}>
+                            {hasSelected ? `已选中 ${selectedRowKeys.length} 条数据` : ''}
+                        </span>
+                    </div>
+                    <Table
+                        size="middle"
+                        locale={{ emptyText: '暂无数据' }}
+                        dataSource={data}
+                        loading={loading}
+                        pagination={false}
+                        rowSelection={rowSelection}
+                        columns={
+                            [
+                                {
+                                    className: 'table-column',
+                                    title: '用户名',
+                                    dataIndex: 'user_name',
+                                    width: 200
+                                }, {
+                                    className: 'table-column',
+                                    title: '班级',
+                                    dataIndex: 'class_name',
+                                }, {
+                                    className: 'table-column',
+                                    title: '操作',
+                                    dataIndex: '',
+                                    width: 200,
+                                    render: (record) => (
+                                        <span>
+                                            <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
+                                            <Divider type="vertical" />
+                                            <a href="javascript:void(0)" onClick={() => this._toDel(record)}>删除</a>
+                                        </span>
+                                    )
+                                },
+                            ]
+                        }
+                    />
+                    <MyPagination
+                        className='common-pagination'
+                        style={{ margin: 16, fontSize: 12 }}
+                        onChange={this._onPageChange}
+                        showTotal={(total: number, range: any) => {
+                            return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
+                        }}
+                        defaultCurrent={1}
+                        defaultPageSize={10}
+                        total={total}
+                        showQuickJumper />
+                </div>
             </div>
         );
     }

@@ -98,7 +98,7 @@ export default class OrganizationTree extends React.Component<any, any> {
 
     upDateTree() {
         const { depth, currentRoleBname } = this.props;
-        Fetch({ url: `crm/org/tree`, host: 'v_crm_api', method: "POST", body: { bname: currentRoleBname } }).then((res: any) => {
+        Fetch('http://127.0.0.1:8080/class/allList').then((res: any) => {
             let data = this.resolveResData(res.data)
             data = this.setTreeData((node: any) => node.orgId === "0", { readonly: true, delable: false }, data)
             data = this.setTreeData((n: any) => n.depth >= depth, { addible: false }, data);

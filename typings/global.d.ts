@@ -14,6 +14,9 @@ declare module 'object-assign';
 
 declare module 'echarts';
 
+/**
+ * 开发模式
+ */
 declare const __DEV__: boolean;
 
 interface Window {

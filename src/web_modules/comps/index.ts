@@ -1,4 +1,10 @@
 
-export { default as MyIcon } from './icon';
+import MyIcon from './myicon';
+import MyTreeNode from './treeNode';
+import MyPopConfirm from './popconfirm';
 
-export { default as MyTreeNode } from './treeNode';
+export {
+    MyIcon,
+    MyTreeNode,
+    MyPopConfirm,
+}

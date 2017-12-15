@@ -47,6 +47,7 @@ export default class TreeNode extends React.Component {
         const InputStyle = {
             width: "60px",
             height: "16px",
+            marginLeft: "5px",
             fontSize: 12,
             padding: 0
         }
@@ -60,7 +61,7 @@ export default class TreeNode extends React.Component {
         const { inputValue, mouseOver } = myState;
         let formData = Object.assign(data, { orgName: inputValue })
         let proxySubmit = (formData?: any, e?: any) => { submit && submit(formData, e); e.stopPropagation() }
-        // console.log("state",this.state)
+
         return (
             <div className={mouseOver ? "" : "hideBtn"} onMouseOver={(e) => { this.setState({ mouseOver: true }) }} onMouseLeave={(e) => { this.setState({ mouseOver: false }) }}>
                 {
@@ -83,7 +84,7 @@ export default class TreeNode extends React.Component {
                             }
                             }
                         /> :
-                        <span style={textStyle} onDoubleClick={edit}>{text}</span>
+                        <span style={textStyle} onDoubleClick={noop}>{text}</span>
                 }
                 {
                     del ? <span style={{ width: 20, display: "inline-block" }}><Icon className="treeNodeBtn red" type="close-circle" onClick={e => { del(formData, e) }} style={butStyle} /></span > : ""

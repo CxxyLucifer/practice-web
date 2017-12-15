@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination, Modal, Divider, Layout } from 'antd';
+import { Table, Button, Pagination, Modal, Divider, Layout, Popconfirm } from 'antd';
+import objectAssign from 'object-assign';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
-import { MyIcon } from 'comps';
+import { MyIcon, MyPopConfirm } from 'comps';
 
 import ClassTree from './component/class-tree';
 
@@ -11,6 +12,7 @@ const { Sider } = Layout;
 const MyPagination: any = Pagination;
 const MyUserAdd: any = UserAdd;
 const ModalIndex = "user";
+const noop = () => { }
 
 export default class UserList extends Component<any, any> {
     constructor(props: any) {
@@ -19,15 +21,21 @@ export default class UserList extends Component<any, any> {
             data: [],
             selectedRowKeys: [],
             loading: false,
-            total: 0
+            total: 0,
+            paramObj: {
+                classId: null,
+                currentPage: 1,
+                pageSize: 10
+            }
         };
     }
 
     componentWillMount() {
-        this._init(1, 10);
+        const { paramObj } = this.state;
+        this._init(paramObj);
     }
 
-    _init = (currentPage: number, pageSize: number) => {
+    _init = ({ currentPage, pageSize, classId }: any) => {
         const _self = this;
         _self.setState({ loading: true });
         Fetch('http://127.0.0.1:8080/user/getUserList', {
@@ -35,6 +43,7 @@ export default class UserList extends Component<any, any> {
             body: {
                 pageNum: currentPage - 1,
                 pageSize: pageSize,
+                class_id: classId,
             }
         }).then((json: any) => {
             _self.setState({ data: json.data, total: json.totalCount, loading: false });
@@ -53,19 +62,19 @@ export default class UserList extends Component<any, any> {
         })
     }
 
-    _toDel = (record: any) => {
-        Modal.confirm({
-            title: '提示',
-            content: '您确定删除该条记录吗？',
-            okText: '确认',
-            cancelText: '取消',
-            onOk() {
-                console.log('OK');
-            },
-            onCancel() {
-                console.log('Cancel');
-            },
-        });
+    _toDel = (id: any) => {
+        __DEV__ && console.log('===== id:', id)
+    }
+
+    _onSelect = (id: any) => {
+        __DEV__ && console.log('===== id:', id)
+        const { paramObj } = this.state;
+        id == 0 ? id = null : id;
+
+        let obj = objectAssign(paramObj, { classId: id, currentPage: 1 });
+
+        this.setState({ paramObj: obj });
+        this._init(obj);
     }
 
     render() {
@@ -81,7 +90,7 @@ export default class UserList extends Component<any, any> {
         return (
             <Layout style={{ height: '100%' }}>
                 <Sider style={{ background: 'white', overflowY: 'auto' }}>
-                    <ClassTree />
+                    <ClassTree onChange={(id: any) => this._onSelect(id)} />
                 </Sider>
                 <div style={{ width: 1, borderWidth: 1, borderColor: 'grey', height: '100%' }} />
                 <Layout style={{ backgroundColor: 'white', overflowY: 'auto' }}>
@@ -126,7 +135,7 @@ export default class UserList extends Component<any, any> {
                                         <span>
                                             <a href="javascript:void(0)" onClick={this._showEdit}>修改</a>
                                             <Divider type="vertical" />
-                                            <a href="javascript:void(0)" onClick={() => this._toDel(record)}>删除</a>
+                                            <MyPopConfirm okFun={() => this._toDel(record.key)} text='删除' />
                                         </span>
                                     )
                                 },
@@ -153,7 +162,11 @@ export default class UserList extends Component<any, any> {
 
 
     _onPageChange = (currentPage: number, pageSize: number) => {
-        this._init(currentPage, pageSize);
+        const { paramObj } = this.state;
+        let obj = objectAssign(paramObj, { currentPage: currentPage, pageSize: pageSize });
+        this.setState({ paramObj: obj })
+
+        this._init(obj);
     }
 
     _onSelectChange = (selectedRowKeys: any) => {

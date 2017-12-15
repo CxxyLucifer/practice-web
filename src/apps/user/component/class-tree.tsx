@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tree, message, Modal } from 'antd';
 import Fetch from 'util/Fetch';
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 import { MyTreeNode } from 'comps';
 
 const TreeNode = Tree.TreeNode;
@@ -64,7 +64,7 @@ export default class OrganizationTree extends React.Component<any, any> {
 
     setTreeData(condition: any, newData: any, tree: any) {
         // let tree = this.state.data;
-        let newTree = Immutable.fromJS(tree).toJS();
+        let newTree = fromJS(tree).toJS();
 
         let findNode = (judge: any, tree: any, newData: any) => {
             tree.map((node: any) => {
@@ -91,7 +91,6 @@ export default class OrganizationTree extends React.Component<any, any> {
     }
 
     handleSelected(selectedKeys: any, e?: any) {
-        console.log("selectedKeys", 'sssss')
         const { onChange } = this.props;
         this.setState({ selectedKeys: selectedKeys.length ? selectedKeys : ["0"] });
         onChange(selectedKeys[0]);
@@ -108,7 +107,6 @@ export default class OrganizationTree extends React.Component<any, any> {
     }
 
     render() {
-        //const {defaultSelected} = this.props;
         const { data, expandedKeys, selectedKeys } = this.state;
         const { currentRoleBname } = this.props;
         let that = this;
@@ -116,7 +114,10 @@ export default class OrganizationTree extends React.Component<any, any> {
         const submit = (data: any, e: any) => {
             let { pid, orgName, type, id } = data;
             let postData = {
-                pid, orgName, bname: currentRoleBname
+                class_id: id,
+                pid: pid,
+                class_name: orgName,
+                bname: currentRoleBname,
             }
             if (orgName && orgName.length > 15) {
                 message.error("不能超过10字")
@@ -126,8 +127,11 @@ export default class OrganizationTree extends React.Component<any, any> {
             e.stopPropagation()
             switch (type) {
                 case "add":
-                    Fetch({ host: 'v_crm_api', url: "crm/org/add", method: "POST", body: postData }).then((res: any) => {
-                        if (res.data === "ok") {
+                    Fetch('http://127.0.0.1:8080/class/add', {
+                        method: "POST",
+                        body: postData,
+                    }).then((res: any) => {
+                        if (res.data.status === "ok") {
                             message.success("新增成功");
                         }
                         this.upDateTree();
@@ -135,8 +139,11 @@ export default class OrganizationTree extends React.Component<any, any> {
                     break;
                 case "normal":
                     (postData as any).orgId = id;
-                    Fetch({ url: "crm/org/update", method: "POST", body: postData }).then((res: any) => {
-                        if (res.data === "ok") {
+                    Fetch('http://127.0.0.1:8080/class/update', {
+                        method: "POST",
+                        body: postData,
+                    }).then((res: any) => {
+                        if (res.data.status === "ok") {
                             message.success("编辑成功");
                             this.handleSelected(that);
                         }
@@ -232,7 +239,7 @@ export default class OrganizationTree extends React.Component<any, any> {
             that.setState({ data, expandedKeys: expandedKeys.concat([id]) })
             event.stopPropagation()
         }
-        // console.log("state",this.state)
+
         return (
             <Tree expandedKeys={expandedKeys}
                 selectedKeys={selectedKeys}

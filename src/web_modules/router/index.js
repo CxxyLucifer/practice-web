@@ -1,5 +1,9 @@
 
-export { default as BundleContainer } from './BundleContainer';
+import BundleContainer from './BundleContainer';
+import ChunkContainer from './ChunkContainer';
 
-export { default as ChunkContainer } from './ChunkContainer';
+export {
+    BundleContainer,
+    ChunkContainer,
+}
 

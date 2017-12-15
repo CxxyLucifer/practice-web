@@ -80,11 +80,11 @@ export default class UserList extends Component<any, any> {
 
         return (
             <Layout style={{ height: '100%' }}>
-                <Sider style={{ background: 'white' }}>
+                <Sider style={{ background: 'white', overflowY: 'auto' }}>
                     <ClassTree />
                 </Sider>
                 <div style={{ width: 1, borderWidth: 1, borderColor: 'grey', height: '100%' }} />
-                <Layout style={{ backgroundColor: 'white', paddingLeft: 10 }}>
+                <Layout style={{ backgroundColor: 'white', overflowY: 'auto' }}>
                     <div style={{ margin: 10 }}>
                         <Button
                             style={{ fontSize: 12, padingTop: 10 }}

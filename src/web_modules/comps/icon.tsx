@@ -10,6 +10,7 @@ import { splitObject } from '../util/ObjectUtil';
 
 export interface IconProps {
     type?: string;
+    style?: any
 }
 
 export default class Icon extends Component<IconProps, any> {

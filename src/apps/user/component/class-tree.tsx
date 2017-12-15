@@ -24,7 +24,8 @@ export default class OrganizationTree extends React.Component<any, any> {
         onChange: () => { },
         orgName: '班级',
         currentRoleBname: '',
-        depth: 1
+        depth: 1,
+        pid: '1'
     }
 
     newId = ""
@@ -179,7 +180,7 @@ export default class OrganizationTree extends React.Component<any, any> {
 
             return <TreeNode key={orgId} title={<MyTreeNode data={{ id: orgId, type: type, pid: pid }} text={orgName}
                 submit={submit}
-                textStyle={{ fontSize: 12 }}
+                textStyle={{ fontSize: 12, marginLeft: 4 }}
                 edit={readonly ? false : edit}
                 add={addible ? add : false}
                 editState={editStatus}

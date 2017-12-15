@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Pagination, Modal, Divider, Layout, Divider } from 'antd';
+import { Table, Button, Pagination, Modal, Divider, Layout } from 'antd';
 import Fetch from 'util/Fetch';
 import Dialog from 'util/Dialog';
 import UserAdd from './user-add';
@@ -79,15 +79,15 @@ export default class UserList extends Component<any, any> {
         const hasSelected = selectedRowKeys.length > 0;
 
         return (
-            <Layout>
+            <Layout style={{ height: '100%' }}>
                 <Sider style={{ background: 'white' }}>
                     <ClassTree />
                 </Sider>
                 <div style={{ width: 1, borderWidth: 1, borderColor: 'grey', height: '100%' }} />
-                <Layout style={{ backgroundColor: 'white', paddingLeft: 10, borderLeftWidth: 1, borderLeftColor: '#e8e8e8' }}>
-                    <div style={{ marginBottom: 10, marginLeft: 10 }}>
+                <Layout style={{ backgroundColor: 'white', paddingLeft: 10 }}>
+                    <div style={{ margin: 10 }}>
                         <Button
-                            style={{ fontSize: 12 }}
+                            style={{ fontSize: 12, padingTop: 10 }}
                             type="primary"
                             size="default"
                             onClick={() => this._showAdd()}
@@ -133,17 +133,19 @@ export default class UserList extends Component<any, any> {
                             ]
                         }
                     />
-                    <MyPagination
-                        className='common-pagination'
-                        style={{ margin: 16, fontSize: 12, float: 'right' }}
-                        onChange={this._onPageChange}
-                        showTotal={(total: number, range: any) => {
-                            return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
-                        }}
-                        defaultCurrent={1}
-                        defaultPageSize={10}
-                        total={total}
-                        showQuickJumper />
+                    <div>
+                        <MyPagination
+                            className='common-pagination'
+                            style={{ margin: 16, fontSize: 12 }}
+                            onChange={this._onPageChange}
+                            showTotal={(total: number, range: any) => {
+                                return total > 0 ? `当前第 ${range[0]} - ${range[1]} 条  共计 ${total} 条` : '没有符合条件的记录'
+                            }}
+                            defaultCurrent={1}
+                            defaultPageSize={10}
+                            total={total}
+                            showQuickJumper />
+                    </div>
                 </Layout>
             </Layout>
         );

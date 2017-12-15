@@ -179,6 +179,7 @@ export default class OrganizationTree extends React.Component<any, any> {
 
             return <TreeNode key={orgId} title={<MyTreeNode data={{ id: orgId, type: type, pid: pid }} text={orgName}
                 submit={submit}
+                textStyle={{ fontSize: 12 }}
                 edit={readonly ? false : edit}
                 add={addible ? add : false}
                 editState={editStatus}

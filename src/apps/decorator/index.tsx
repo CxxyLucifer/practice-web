@@ -21,10 +21,10 @@ export default class index extends Component<any, any> {
         return (
             <Layout style={{ height: '100%' }}>
                 <MyMenu history={this.props.history} location={this.props.location} />
-                <Layout style={{ padding: '0 10px 10px', overflow: 'hidden' }}>
+                <Layout style={{ overflow: 'hidden' }}>
                     <Header />
                     <Breadcrumb />
-                    <Content style={{ background: '#fff', padding: 10, margin: 0, overflowY: 'auto' }}>
+                    <Content style={{ background: '#fff', marginLeft: 5, marginRight: 5, height: '100%', overflow: 'hidden' }}>
                         {
                             this.props.children
                         }

@@ -33,7 +33,7 @@ export default class header extends Component<any, any> {
         let collapsed = this._get('collapsed');
 
         return (
-            <Header style={{ background: '#fff', padding: 0, marginLeft: -10, marginRight: -10 }}>
+            <Header style={{ background: '#fff', padding: 0 }}>
                 <Icon
                     className="header-trigger"
                     type={collapsed == 'true' ? 'menu-unfold' : 'menu-fold'}

@@ -47,6 +47,7 @@ export default class TreeNode extends React.Component {
         const InputStyle = {
             width: "60px",
             height: "16px",
+            fontSize: 12,
             padding: 0
         }
 

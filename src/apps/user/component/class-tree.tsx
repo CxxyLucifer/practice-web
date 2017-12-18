@@ -19,11 +19,10 @@ const TreeNode = Tree.TreeNode;
  *  cancel: function 取消按钮的响应事件
  * }
  */
-export default class OrganizationTree extends React.Component<any, any> {
+export default class ClassTree extends React.Component<any, any> {
     static defaultProps = {
         onChange: () => { },
         orgName: '班级',
-        currentRoleBname: '',
         depth: 1,
         pid: '1'
     }
@@ -77,7 +76,6 @@ export default class OrganizationTree extends React.Component<any, any> {
                 }
             })
         }
-
         findNode(condition, newTree, newData)
         return newTree;
     }
@@ -97,7 +95,7 @@ export default class OrganizationTree extends React.Component<any, any> {
     }
 
     upDateTree() {
-        const { depth, currentRoleBname } = this.props;
+        const { depth } = this.props;
         Fetch('http://127.0.0.1:8080/class/allList').then((res: any) => {
             let data = this.resolveResData(res.data)
             data = this.setTreeData((node: any) => node.orgId === "0", { readonly: true, delable: false }, data)
@@ -108,7 +106,6 @@ export default class OrganizationTree extends React.Component<any, any> {
 
     render() {
         const { data, expandedKeys, selectedKeys } = this.state;
-        const { currentRoleBname } = this.props;
         let that = this;
 
         const submit = (data: any, e: any) => {
@@ -116,8 +113,7 @@ export default class OrganizationTree extends React.Component<any, any> {
             let postData = {
                 class_id: id,
                 pid: pid,
-                class_name: orgName,
-                bname: currentRoleBname,
+                class_name: orgName
             }
             if (orgName && orgName.length > 15) {
                 message.error("不能超过10字")
@@ -160,19 +156,20 @@ export default class OrganizationTree extends React.Component<any, any> {
             e.stopPropagation()
             Modal.confirm({
                 title: '提示',
-                content: '您确定删除该组别吗？',
+                content: '您确定删除【' + data.orgName + '】吗？',
                 okText: '确定',
                 cancelText: '取消',
                 onOk: () => {
                     const { reload } = this.props;
-                    Fetch({ host: 'v_crm_api', url: "crm/org/delete", method: "POST", body: { orgId: data.id } }).then((res: any) => {
-                        if (res.data === "ok") {
+                    Fetch("http://127.0.0.1:8080/class/delete", {
+                        method: "POST",
+                        body: {
+                            class_id: data.id
+                        }
+                    }).then((res: any) => {
+                        if (res.data.status === "ok") {
                             message.success("删除成功")
                             this.upDateTree();
-                        } else {
-                            if (res.err) {
-                                message.error(res.err.toString().replace("Error:", ""))
-                            }
                         }
                     })
                 }

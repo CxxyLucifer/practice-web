@@ -2,7 +2,7 @@
 import './style/treeNode.less';
 import React from 'react';
 import { Icon, Input, Popconfirm } from 'antd';
-import MyIcon from './icon';
+import MyIcon from './myicon';
 
 /**
  * 不负责业务逻辑，只管交互逻辑，状态都交给父组件管理

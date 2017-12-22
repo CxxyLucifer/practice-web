@@ -32,13 +32,13 @@ const Fetch = (url: string, param?: any) => {
                 } else {
                     success = false;
                 }
-                return response.json()
+                return response.json();
             })
             .then(data => {
                 if (__DEV__) {
                     console.log('\n', '---------- fetch url:', url)
                     param && console.log('----------- fetch param:', JSON.stringify(param))
-                    console.log('----------- fetch result:', JSON.stringify(data))
+                    console.log('----------- fetch result:', data)
                 }
                 if (success) {
                     resolve(data)
@@ -67,7 +67,7 @@ const solveMessge = (data: any) => {
                 break;
             }
             break;
-        case 500:       //1、throw new Exception("参数异常")抛的异常 2、其他异常
+        case 500:       //1、throw new CommonException("参数异常")抛的异常 2、其他异常
             if (undefined != data.message) {
                 message.warning(data.message);
             }

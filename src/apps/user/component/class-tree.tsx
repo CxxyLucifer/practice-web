@@ -161,12 +161,7 @@ export default class ClassTree extends React.Component<any, any> {
                 cancelText: '取消',
                 onOk: () => {
                     const { reload } = this.props;
-                    Fetch("http://127.0.0.1:8080/class/delete", {
-                        method: "POST",
-                        body: {
-                            class_id: data.id
-                        }
-                    }).then((res: any) => {
+                    Fetch(`http://127.0.0.1:8080/class/delete/${data.id}`).then((res: any) => {
                         if (res.data.status === "ok") {
                             message.success("删除成功")
                             this.upDateTree();

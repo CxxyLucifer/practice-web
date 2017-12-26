@@ -18,19 +18,32 @@ export default class index extends Component<any, any> {
     store: AppStore;
 
     render() {
+        let myProps: any = this.props;
+        let showMain = true;
+        if (myProps.location.pathname == '/login') {
+            showMain = false;
+        }
+
         return (
-            <Layout style={{ height: '100%' }}>
-                <MyMenu history={this.props.history} location={this.props.location} />
-                <Layout style={{ overflow: 'hidden' }}>
-                    <Header />
-                    <Breadcrumb />
-                    <Content style={{ background: '#fff', marginLeft: 5, marginRight: 5, height: '100%', overflow: 'hidden' }}>
-                        {
-                            this.props.children
-                        }
-                    </Content>
-                </Layout>
-            </Layout>
+            <div style={{ height: '100%' }}>
+                {
+                    showMain ?
+                        <Layout style={{ height: '100%' }}>
+                            <MyMenu history={this.props.history} location={this.props.location} />
+                            <Layout style={{ overflow: 'hidden' }}>
+                                <Header />
+                                <Breadcrumb />
+                                <Content style={{ background: '#fff', marginLeft: 5, marginRight: 5, height: '100%', overflow: 'hidden' }}>
+                                    {
+                                        myProps.children
+                                    }
+                                </Content>
+                            </Layout>
+                        </Layout>
+                        :
+                        myProps.children
+                }
+            </div>
         )
     }
 }

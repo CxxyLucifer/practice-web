@@ -37,7 +37,7 @@ export default class menu extends Component<any, any> {
         let collapsed = this._get('collapsed');
 
         return (
-            <Sider style={{ background: '#00152a' }}
+            <Sider style={{ background: '#002140' }}
                 trigger={null}
                 collapsible
                 collapsed={collapsed == 'true'}

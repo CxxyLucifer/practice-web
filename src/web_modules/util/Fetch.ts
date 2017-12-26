@@ -100,7 +100,7 @@ const solveAuth = (json: any) => {
         myStorage.setItem('jwt_token', json.data.token);
     }
     //非法请求，跳转至登录页
-    if (json.notAuth) {
+    if (json.not_auth) {
         let myWindow: any = window;
         myWindow.location = "http://127.0.0.1:8088/#/login";
     }

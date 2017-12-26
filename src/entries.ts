@@ -1,5 +1,10 @@
 
 export default [
+    //login
+    {
+        name: 'login', path: '/login', exact: true,
+        render: () => System.import(/* webpackChunkName: "login" */ './apps/login/index')
+    },
     //user
     {
         name: 'user-list', path: '/user/list', exact: true,

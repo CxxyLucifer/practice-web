@@ -37,30 +37,33 @@ export default class menu extends Component<any, any> {
         let collapsed = this._get('collapsed');
 
         return (
-            <Sider style={{ background: '#002140' }}
+            <Sider
+                className="layout-sider"
                 trigger={null}
                 collapsible
                 collapsed={collapsed == 'true'}
             >
-                <div className="menu-logo" />
+                <div className="common-logo">
+                    <h1></h1>
+                </div>
                 <Menu
-                    mode="inline"
                     theme="dark"
+                    mode="inline"
                     defaultSelectedKeys={[menuKey]}
                     defaultOpenKeys={[subMenuKey]}
-                    style={{ height: '100%', borderRight: 0 }}
+                    style={{ height: 'calc(100% - 64)', borderRight: 0, padding: '16px 0' }}
                 >
-                    <SubMenu key="user" title={<span><Icon type="user" /><span>系统管理</span></span>}>
+                    <SubMenu key="user" title={<span><Icon type="user" /><span style={{ fontSize: 13 }}>系统管理</span></span>}>
                         <Menu.Item key="userlist">
-                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
+                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu key="chart" title={<span><Icon type="laptop" /><span>图表</span></span>}>
+                    <SubMenu key="chart" title={<span><Icon type="laptop" /><span style={{ fontSize: 13 }}>图表</span></span>}>
                         <Menu.Item key="chartline">
-                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/chart/line', '折线图')}>折线图</a>
+                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/chart/line', '折线图')}>折线图</a>
                         </Menu.Item>
                         <Menu.Item key="chartpie">
-                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/chart/pie', '饼图')}>饼图</a>
+                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/chart/pie', '饼图')}>饼图</a>
                         </Menu.Item>
                     </SubMenu>
                 </Menu>

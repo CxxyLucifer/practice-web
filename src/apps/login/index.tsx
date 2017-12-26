@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
 import '../../style/login.less';
 
+const MyForm: any = Form;
 const FormItem = Form.Item;
 const { TabPane } = Tabs;
 const MyButton: any = Button;
 
-@Form.create()
+@MyForm.create()
 export default class Login extends Component<any, any> {
     interval: any;
     constructor(props: any) {
@@ -22,75 +23,24 @@ export default class Login extends Component<any, any> {
         clearInterval(this.interval);
     }
 
-    onSwitch = (type: any) => {
-        this.setState({ type });
-    }
-
-    onGetCaptcha = () => {
-        let count = 59;
-        this.setState({ count });
-        this.interval = setInterval(() => {
-            count -= 1;
-            this.setState({ count });
-            if (count === 0) {
-                clearInterval(this.interval);
-            }
-        }, 1000);
-    }
-
-    handleSubmit = (e: any) => {
-        e.preventDefault();
-        this.props.form.validateFields({ force: true },
-            (err: any, values: any) => {
-                if (!err) {
-                    this.props.dispatch({
-                        type: 'login/login',
-                        payload: {
-                            ...values,
-                            type: this.state.type,
-                        },
-                    });
-                }
-            }
-        );
-    }
-
-    renderMessage = (message: string) => {
-        return (
-            <Alert
-                style={{ marginBottom: 24 }}
-                message={message}
-                type="error"
-                showIcon
-            />
-        );
-    }
-
     render() {
-        const { form, login } = this.props;
-        const { getFieldDecorator } = form;
+        const { getFieldDecorator } = this.props.form;
         const { count, type } = this.state;
 
         return (
             <div className="container">
-                <div className="top">
-                    <div className="header">
+                <div className="login-top">
+                    <div className="login-header">
                         <Link to="/">
-                            <span className="title">登录</span>
+                            <span className="login-title">登录</span>
                         </Link>
                     </div>
-                    <div className="desc"></div>
+                    <div className="login-desc"></div>
                 </div>
                 <div className="main">
                     <Form onSubmit={this.handleSubmit}>
                         <Tabs animated={false} className="tabs" activeKey={type} onChange={this.onSwitch}>
                             <TabPane tab="账户密码登录" key="account">
-                                {/* {
-                                login.status === 'error' &&
-                                login.type === 'account' &&
-                                login.submitting === false &&
-                                this.renderMessage('账户或密码错误')
-                            } */}
                                 <FormItem>
                                     {getFieldDecorator('userName', {
                                         rules: [{
@@ -120,10 +70,6 @@ export default class Login extends Component<any, any> {
                                 </FormItem>
                             </TabPane>
                             <TabPane tab="手机号登录" key="mobile">
-                                {/* {
-                                login.submitting === false &&
-                                this.renderMessage('验证码错误')
-                            } */}
                                 <FormItem>
                                     {getFieldDecorator('mobile', {
                                         rules: [{
@@ -178,19 +124,56 @@ export default class Login extends Component<any, any> {
                             <a className="forgot" href="">忘记密码</a>
                             <Button size="large" className="submit" type="primary" htmlType="submit">
                                 登录
-                         </Button>
+                            </Button>
                         </FormItem>
                     </Form>
                 </div>
-                {/* <div className="footer">
+                <div className="footer">
                     <div className="links">
-                        <a target="_self" href="">帮助</a>
-                        <a target="_self" href="">隐私</a>
-                        <a target="_self" href="">条款</a>
+                        <a target="_blank" href="">帮助</a>
+                        <a target="_blank" href="">隐私</a>
+                        <a target="_blank" href="">条款</a>
                     </div>
-                    <div className="copyright">Copyright  2017 蚂蚁金服体验技术部出品</div>
-                </div> */}
+                    <div className="copyright">Copyright  2017 楠色星辰技术出品</div>
+                </div>
             </div>
         );
+    }
+
+    onSwitch = (type: any) => {
+        this.setState({ type });
+    }
+
+    onGetCaptcha = () => {
+        let count = 59;
+        this.setState({ count });
+        this.interval = setInterval(() => {
+            count -= 1;
+            this.setState({ count });
+            if (count === 0) {
+                clearInterval(this.interval);
+            }
+        }, 1000);
+    }
+
+    handleSubmit = (e: any) => {
+        e.preventDefault();
+        this.props.form.validateFields({ force: true },
+            (err: any, values: any) => {
+                if (!err) {
+
+                    this._redirect();
+                }
+            }
+        );
+    }
+
+    _redirect = (url?: string) => {
+        let myProps: any = this.props;
+        let { history } = myProps;
+
+        if (myProps.location.pathname != url) {
+            history.push(url || '/');
+        }
     }
 }

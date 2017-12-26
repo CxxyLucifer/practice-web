@@ -14,6 +14,11 @@ declare module 'object-assign';
 
 declare module 'echarts';
 
+declare module 'lodash/groupBy';
+
+declare module 'moment';
+
+
 /**
  * 开发模式
  */

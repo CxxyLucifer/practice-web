@@ -11,6 +11,7 @@ import AppStore from './store';
 
 const { Content } = Layout;
 const MyMenu: any = Menu;
+const MyHeader: any = Header;
 
 @withRouter
 @StoreProvider(AppStore, { debug: __DEV__ })
@@ -25,13 +26,13 @@ export default class index extends Component<any, any> {
         }
 
         return (
-            <div style={{ height: '100%' }}>
+            <div style={{ height: '100%', padding: 0, margin: 0 }}>
                 {
                     showMain ?
                         <Layout style={{ height: '100%' }}>
                             <MyMenu history={this.props.history} location={this.props.location} />
                             <Layout style={{ overflow: 'hidden' }}>
-                                <Header />
+                                <MyHeader history={this.props.history} location={this.props.location} />
                                 <Breadcrumb />
                                 <Content style={{ background: '#fff', marginLeft: 5, marginRight: 5, height: '100%', overflow: 'hidden' }}>
                                     {

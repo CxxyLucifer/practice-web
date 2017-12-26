@@ -18,6 +18,8 @@
     "echarts": "^3.8.5",
     "immutable": "^3.8.2",
     "js-cookie": "^2.2.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.20.1",
     "object-assign": "^4.1.1",
     "plume2": "^0.2.2",
     "react": "^16.1.1",

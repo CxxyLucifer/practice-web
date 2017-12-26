@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Select, Button, AutoComplete } from 'antd';
 import Validator from 'util/Validator';
 
+const MyForm: any = Form;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -11,7 +12,8 @@ export interface UserAddProps {
     form?: any
 }
 
-class UserAdd extends Component<UserAddProps, any>{
+@MyForm.create()
+export default class UserAdd extends Component<UserAddProps, any>{
     constructor(props: UserAddProps) {
         super(props);
         this.state = {
@@ -162,6 +164,3 @@ class UserAdd extends Component<UserAddProps, any>{
         callback();
     }
 }
-const MyUserAdd: any = UserAdd;
-const UserAddForm = Form.create()(MyUserAdd);
-export default UserAddForm;

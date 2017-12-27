@@ -31,9 +31,9 @@ export default class UserAdd extends Component<UserAddProps, any>{
         }
     }
 
-
     render() {
         let { type } = this.props;
+
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
             labelCol: {

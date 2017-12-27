@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-
+import { MyIcon } from 'comps';
 import Util from 'util/Util';
 import { Relax, IMap } from 'plume2';
 
@@ -41,10 +41,11 @@ export default class menu extends Component<any, any> {
                 className="layout-sider"
                 trigger={null}
                 collapsible
-                width={200}
+                width={256}
                 collapsed={collapsed == 'true'}
             >
                 <div className="common-logo">
+                    <MyIcon type="icon-lianxi" style={{ color: '#5490df', fontSize: 30 }} />
                     <h1>Practice Web</h1>
                 </div>
                 <Menu
@@ -54,17 +55,17 @@ export default class menu extends Component<any, any> {
                     defaultOpenKeys={[subMenuKey]}
                     style={{ height: 'calc(100% - 64)', borderRight: 0, padding: '16px 0' }}
                 >
-                    <SubMenu key="user" title={<span><Icon type="user" /><span style={{ fontSize: 13 }} > 系统管理</span></span>}>
+                    <SubMenu key="user" title={<span><Icon type="user" /><span>系统管理</span></span>}>
                         <Menu.Item key="userlist">
-                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
+                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu key="chart" title={<span><Icon type="laptop" /><span style={{ fontSize: 13 }}>图表</span></span>}>
+                    <SubMenu key="chart" title={<span><Icon type="laptop" /><span>图表</span></span>}>
                         <Menu.Item key="chartline">
-                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/chart/line', '折线图')}>折线图</a>
+                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/chart/line', '折线图')}>折线图</a>
                         </Menu.Item>
                         <Menu.Item key="chartpie">
-                            <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/chart/pie', '饼图')}>饼图</a>
+                            <a href='javascript:void(0)' onClick={() => this._changeUrl('/chart/pie', '饼图')}>饼图</a>
                         </Menu.Item>
                     </SubMenu>
                 </Menu>

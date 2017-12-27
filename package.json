@@ -1,7 +1,7 @@
 {
-  "name": "shop-web",
+  "name": "practice-web",
   "version": "1.0.0-RELEASE",
-  "description": "shop-web",
+  "description": "practice-web",
   "main": "",
   "scripts": {
     "clean": "rm -rf ./node_modules && yarn install",

@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import { Layout, Icon, message, Tag, Dropdown, Menu, Avatar } from 'antd';
 import { Relax, IMap } from 'plume2';
 import Util from 'util/Util';
-import NoticeIcon from './NoticeIcon';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
+import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';
 import '../../../style/header.less';
 
 const { Header } = Layout;
@@ -70,15 +70,14 @@ export default class header extends Component<any, any> {
                     onClick={this._collasped}
                 />
                 <div className="header-right">
-                    {/* <NoticeIcon
-                        className="header-action"
+                    <NoticeIcon
+                        className="action notice-icon"
                         count={12}
-                        onItemClick={(item, tabProps) => {
-                            console.log(item, tabProps);
+                        onItemClick={(item: any, tabProps: any) => {
+                            console.log(item, tabProps); // eslint-disable-line
                         }}
-                        onClear={this.handleNoticeClear}
-                        onPopupVisibleChange={this.handleNoticeVisibleChange}
-                        loading={false}
+                        onPopupVisibleChange={this._handleVisibleChange}
+                        onClear={this._clearNotice}
                         popupAlign={{ offset: [20, -16] }}
                     >
                         <NoticeIcon.Tab
@@ -99,11 +98,11 @@ export default class header extends Component<any, any> {
                             emptyText="你已完成所有待办"
                             emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
                         />
-                    </NoticeIcon> */}
+                    </NoticeIcon>
                     <Dropdown overlay={menu}>
-                        <span className="header-action account">
+                        <span className="action account">
                             <Avatar size="small" className="avatar" src={"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"} />
-                            {"17361****15"}
+                            {"173******15"}
                         </span>
                     </Dropdown>
                 </div>
@@ -111,11 +110,12 @@ export default class header extends Component<any, any> {
         )
     }
 
-    handleNoticeClear = (type: any) => {
+    _clearNotice = (type: any) => {
+        console.log('type:', type)
 
     }
 
-    handleNoticeVisibleChange = (visible: any) => {
+    _handleVisibleChange = (visible: any) => {
         if (visible) {
 
         }

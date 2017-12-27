@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^3.0.0",
+    "ant-design-pro": "^0.3.1",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "echarts": "^3.8.5",

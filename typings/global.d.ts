@@ -18,6 +18,8 @@ declare module 'lodash/groupBy';
 
 declare module 'moment';
 
+declare module 'ant-design-pro/lib/NoticeIcon';
+
 
 /**
  * 开发模式

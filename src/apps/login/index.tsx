@@ -38,7 +38,7 @@ export default class Login extends Component<any, any> {
                     <div className="login-desc"></div>
                 </div>
                 <div className="main">
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this._handleSubmit}>
                         <Tabs animated={false} className="tabs" activeKey={type} onChange={this.onSwitch}>
                             <TabPane tab="账户密码登录" key="account">
                                 <FormItem>
@@ -156,13 +156,13 @@ export default class Login extends Component<any, any> {
         }, 1000);
     }
 
-    handleSubmit = (e: any) => {
+    _handleSubmit = (e: any) => {
         e.preventDefault();
         this.props.form.validateFields({ force: true },
             (err: any, values: any) => {
                 if (!err) {
 
-                    this._redirect();
+                    this._redirect('/user/list');
                 }
             }
         );

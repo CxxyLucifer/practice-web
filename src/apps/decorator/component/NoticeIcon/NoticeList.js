@@ -16,7 +16,6 @@ export default function NoticeList({
       </div>
     );
   }
-
   return (
     <div>
       <List className={styles.list}>
@@ -24,7 +23,6 @@ export default function NoticeList({
           const itemCls = classNames(styles.item, {
             [styles.read]: item.read,
           });
-
           return (
             <List.Item className={itemCls} key={item.key || i} onClick={() => onClick(item)}>
               <List.Item.Meta

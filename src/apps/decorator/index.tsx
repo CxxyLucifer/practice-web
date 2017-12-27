@@ -34,7 +34,7 @@ export default class index extends Component<any, any> {
                             <Layout style={{ overflow: 'hidden' }}>
                                 <MyHeader history={this.props.history} location={this.props.location} />
                                 <Breadcrumb />
-                                <Content style={{ background: '#fff', marginLeft: 5, marginRight: 5, height: '100%', overflow: 'hidden' }}>
+                                <Content style={{ background: '#fff', marginLeft: 15, marginRight: 15, height: '100%', overflow: 'hidden' }}>
                                     {
                                         myProps.children
                                     }

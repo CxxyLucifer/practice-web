@@ -78,12 +78,12 @@ const solveMessge = (data: any) => {
             }
             break;
         case 500:       //1、throw new CommonException("参数异常")抛的异常 2、其他异常
-            if (undefined != data.message) {
+            if (data.message) {
                 message.warning(data.message);
             }
             break;
         default:
-            if (undefined != data.message) {
+            if (data.message) {
                 message.warning(data.message);
             }
             break;

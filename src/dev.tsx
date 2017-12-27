@@ -18,7 +18,7 @@ class App extends Component<any, any> {
                 <Decorator>
                     <div style={{ height: '100%' }}>
                         <Route exact path="/" render={() => (
-                            <Redirect to="/user/list" />
+                            <Redirect to="/login" />
                         )} />
                         <MyChunkContainer entries={entries} />
                     </div>

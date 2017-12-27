@@ -7,12 +7,11 @@ import styles from './index.less';
 const { TabPane } = Tabs;
 
 export default class NoticeIcon extends PureComponent {
-
   static defaultProps = {
-    onItemClick: () => { },
-    onPopupVisibleChange: () => { },
-    onTabChange: () => { },
-    onClear: () => { },
+    onItemClick: () => {},
+    onPopupVisibleChange: () => {},
+    onTabChange: () => {},
+    onClear: () => {},
     loading: false,
     locale: {
       emptyText: '暂无数据',
@@ -20,9 +19,7 @@ export default class NoticeIcon extends PureComponent {
     },
     emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
   };
-
   static Tab = TabPane;
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,20 +27,14 @@ export default class NoticeIcon extends PureComponent {
       this.state.tabType = props.children[0].props.title;
     }
   }
-
-
   onItemClick = (item, tabProps) => {
     const { onItemClick } = this.props;
     onItemClick(item, tabProps);
   }
-
-
   onTabChange = (tabType) => {
     this.setState({ tabType });
     this.props.onTabChange(tabType);
   }
-
-
   getNotificationBox() {
     const { children, loading, locale } = this.props;
     if (!children) {
@@ -73,13 +64,10 @@ export default class NoticeIcon extends PureComponent {
       </Spin>
     );
   }
-
-
   render() {
     const { className, count, popupAlign, onPopupVisibleChange } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
     const notificationBox = this.getNotificationBox();
-
     const trigger = (
       <span className={noticeButtonClass}>
         <Badge count={count} className={styles.badge}>
@@ -87,16 +75,13 @@ export default class NoticeIcon extends PureComponent {
         </Badge>
       </span>
     );
-
     if (!notificationBox) {
       return trigger;
     }
-
     const popoverProps = {};
     if ('popupVisible' in this.props) {
       popoverProps.visible = this.props.popupVisible;
     }
-
     return (
       <Popover
         placement="bottomRight"

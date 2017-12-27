@@ -41,10 +41,11 @@ export default class menu extends Component<any, any> {
                 className="layout-sider"
                 trigger={null}
                 collapsible
+                width={200}
                 collapsed={collapsed == 'true'}
             >
                 <div className="common-logo">
-                    <h1></h1>
+                    <h1>Practice Web</h1>
                 </div>
                 <Menu
                     theme="dark"
@@ -53,7 +54,7 @@ export default class menu extends Component<any, any> {
                     defaultOpenKeys={[subMenuKey]}
                     style={{ height: 'calc(100% - 64)', borderRight: 0, padding: '16px 0' }}
                 >
-                    <SubMenu key="user" title={<span><Icon type="user" /><span style={{ fontSize: 13 }}>系统管理</span></span>}>
+                    <SubMenu key="user" title={<span><Icon type="user" /><span style={{ fontSize: 13 }} > 系统管理</span></span>}>
                         <Menu.Item key="userlist">
                             <a style={{ fontSize: 12 }} href='javascript:void(0)' onClick={() => this._changeUrl('/user/list', '用户管理')}>用户管理</a>
                         </Menu.Item>

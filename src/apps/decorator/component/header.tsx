@@ -13,8 +13,6 @@ import '../../../style/header.less';
 const { Header } = Layout;
 const noop = () => { }
 
-
-
 @Relax
 export default class header extends Component<any, any> {
     props: {
@@ -65,15 +63,15 @@ export default class header extends Component<any, any> {
         const noticeData = this._getNoticeData(tempData);
 
         return (
-            <Header className="header">
+            <Header className="notice-header">
                 <Icon
                     className="trigger"
                     type={collapsed == 'true' ? 'menu-unfold' : 'menu-fold'}
                     onClick={this._collasped}
                 />
-                <div className="right">
+                <div className="header-right">
                     {/* <NoticeIcon
-                        className="action"
+                        className="header-action"
                         count={12}
                         onItemClick={(item, tabProps) => {
                             console.log(item, tabProps);
@@ -103,7 +101,7 @@ export default class header extends Component<any, any> {
                         />
                     </NoticeIcon> */}
                     <Dropdown overlay={menu}>
-                        <span className="action account">
+                        <span className="header-action account">
                             <Avatar size="small" className="avatar" src={"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"} />
                             {"17361****15"}
                         </span>
@@ -114,9 +112,9 @@ export default class header extends Component<any, any> {
     }
 
     handleNoticeClear = (type: any) => {
-        message.success(`清空了${type}`);
 
     }
+
     handleNoticeVisibleChange = (visible: any) => {
         if (visible) {
 

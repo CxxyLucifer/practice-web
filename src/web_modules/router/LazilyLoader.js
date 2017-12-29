@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Exception from 'ant-design-pro/lib/Exception';
 
 const noop = () => { }
 
@@ -30,39 +31,21 @@ export default class LazilyLoader extends Component {
 		}
 	}
 
-	/**
-	 * @method
-	 * @param {string} name chunk name
-	 * @description 加载Chunk（页面分片chunkFile.js入口）
-	 */
 	_syncLoadChunk = async () => {
 		let self = this;
-		let { Component } = this.state || {};
+		let { Component } = this.state;
 		let { render } = this.props;
+
 		if (!this._isMounted) return null;
+
 		try {
-			//import() return promise对象来lazy load
 			let module = await render();
-			this.setState({
-				Component: module["default"] || module || null
-			});
+			this.setState({ Component: module["default"] || module });
 		} catch (e) {
-			console.error('chunk加载错误-main', e || 'chunk加载错误!');
+			console.error('chunk加载错误:', e);
 			this.setState({
-				Component: ChunkNotFound
+				Component: <Exception type="404" />
 			});
 		}
-
-	}
-
-}
-
-/**
- * @class
- * @description chunk laod出错，时的渲染逻辑
- */
-class ChunkNotFound extends Component {
-	render() {
-		return <div>抱歉，没有找到页面</div>
 	}
 }

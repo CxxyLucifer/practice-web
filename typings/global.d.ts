@@ -2,13 +2,7 @@ declare module 'router';
 
 declare module 'comps';
 
-declare module 'util/Util';
-
-declare module 'util/Fetch';
-
-declare module 'util/Dialog';
-
-declare module 'util/Validator';
+declare module 'util/*';
 
 declare module 'object-assign';
 
@@ -18,7 +12,7 @@ declare module 'lodash/groupBy';
 
 declare module 'moment';
 
-declare module 'ant-design-pro/lib/NoticeIcon';
+declare module 'ant-design-pro/lib/*';
 
 
 /**

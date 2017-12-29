@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-
 import LazilyLoader from './LazilyLoader';
 
 export default class ChunkContainer extends Component {
@@ -9,26 +8,20 @@ export default class ChunkContainer extends Component {
 	}
 
 	render() {
-		let { entries } = this.props;
-		return this._RouteContainer(entries);
+		return this._routeContainer();
 	}
 
-	/**
-	 * @method
-	 * @param { Array } routes
-	 * @description 递归遍历所有路由
-	 */
-	_RouteContainer(routes) {
-		if (Array.isArray(routes) && routes.length > 0) {
+	_routeContainer() {
+		let { entries } = this.props;
+
+		if (Array.isArray(entries) && entries.length > 0) {
 			return (
 				<Switch>
 					{
-						routes.map((v, k) => {
+						entries.map((v, k) => {
 							let { name } = v;
-
 							return (
 								<Route {...v} key={'@chunk_r_' + name} render={(props) => {
-									//code split && lazy load
 									return <LazilyLoader key={'@chunk_' + name} {...v} {...props} />
 								}} />
 							)

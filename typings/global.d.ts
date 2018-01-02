@@ -8,7 +8,7 @@ declare module 'object-assign';
 
 declare module 'echarts';
 
-declare module 'lodash/groupBy';
+declare module 'lodash/*';
 
 declare module 'moment';
 

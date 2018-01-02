@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const { version } = require('./package.json') || {};
+const { version } = require('./package.json');
 
 module.exports = {
     entry: {

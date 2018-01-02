@@ -20,7 +20,7 @@ export default class UserList extends Component<any, any> {
         this.state = {
             data: [],
             selectedRowKeys: [],
-            loading: false,
+            loading: true,
             total: 0,
             paramObj: {
                 classId: null,
@@ -37,7 +37,6 @@ export default class UserList extends Component<any, any> {
 
     _init = ({ currentPage, pageSize, classId }: any) => {
         const _self = this;
-        _self.setState({ loading: true });
         Fetch('http://127.0.0.1:8080/user/getUserList', {
             method: 'post',
             body: {

@@ -32,7 +32,6 @@ export default class LazilyLoader extends Component {
 	}
 
 	_syncLoadChunk = async () => {
-		let self = this;
 		let { Component } = this.state;
 		let { render } = this.props;
 

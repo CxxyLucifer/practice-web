@@ -21,7 +21,7 @@ export default class index extends Component<any, any> {
     render() {
         let myProps: any = this.props;
         let showMain = true;
-        if (myProps.location.pathname == '/login') {
+        if (myProps.location.pathname == '/login' || myProps.location.pathname == '/register') {
             showMain = false;
         }
 

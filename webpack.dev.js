@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { dll } = require('./package.json');
 
 module.exports = {
     entry: {
@@ -52,9 +53,10 @@ module.exports = {
         new webpack.DllReferencePlugin({
             name: 'genesis',
             context: __dirname,
-            manifest: require(path.resolve(__dirname, './properties/genesis.dll.5ebadc.json'))
+            manifest: require(path.resolve(__dirname, `./properties/${dll}`))
         }),
         new HtmlWebpackPlugin({
+            title: 'practice web',
             filename: 'index.html',
             template: './index.ejs'
         })

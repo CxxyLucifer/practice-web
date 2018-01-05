@@ -12,10 +12,11 @@
   "author": "liuhui",
   "license": "ISC",
   "dependencies": {
-    "antd": "^3.0.0",
     "ant-design-pro": "^0.3.1",
+    "antd": "^3.0.0",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
+    "crypto-js": "^3.1.9-1",
     "echarts": "^3.8.5",
     "immutable": "^3.8.2",
     "js-cookie": "^2.2.0",

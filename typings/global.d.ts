@@ -12,6 +12,8 @@ declare module 'lodash/*';
 
 declare module 'moment';
 
+declare module 'crypto-js';
+
 declare module 'ant-design-pro/lib/*';
 
 

@@ -12,7 +12,6 @@ const myStorage = window.sessionStorage;
  * @param {*} param 
  */
 const Fetch = (url: string, param?: any) => {
-
     if (param && param['body'] && typeof param['body'] == 'object') {
         param['body'] = JSON.stringify(param['body']);
     }
@@ -98,6 +97,10 @@ const solveAuth = (json: any) => {
     //登录保存jwt_token至sessionStorage
     if (json.data && json.data.token) {
         myStorage.setItem('jwt_token', json.data.token);
+    }
+    //请求接口时刷新token过期时间
+    if (json.token) {
+        myStorage.setItem('jwt_token', json.token);
     }
     //非法请求，跳转至登录页
     if (json.unauthorize) {

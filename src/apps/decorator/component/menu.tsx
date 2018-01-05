@@ -3,8 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import { MyIcon } from 'comps';
-import Util from 'util/Util';
+import { MyIcon, Util } from 'comps';
 import { Relax, IMap } from 'plume2';
 
 const { SubMenu } = Menu;

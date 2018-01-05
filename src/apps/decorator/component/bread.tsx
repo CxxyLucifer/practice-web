@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Breadcrumb } from 'antd';
 import { Relax, IMap } from 'plume2';
-import Util from 'util/Util';
+import { Util } from 'comps';
 
 const noop = () => { }
 

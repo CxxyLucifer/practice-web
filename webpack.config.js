@@ -53,6 +53,11 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
+        new webpack.DllReferencePlugin({
+            name: 'genesis',
+            context: __dirname,
+            manifest: require(path.resolve(__dirname, './properties/genesis.dll.5ebadc.json'))
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: false }
         }),

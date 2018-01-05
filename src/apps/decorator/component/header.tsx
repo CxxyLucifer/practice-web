@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Layout, Icon, message, Tag, Dropdown, Menu, Avatar } from 'antd';
 import { Relax, IMap } from 'plume2';
-import Util from 'util/Util';
+import { Util } from 'comps';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';

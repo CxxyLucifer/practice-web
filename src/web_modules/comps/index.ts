@@ -7,6 +7,7 @@ import Fetch from './util/Fetch';
 import Dialog from './util/Dialog';
 import Validator from './util/Validator';
 import RegUtil from './util/regUtil';
+import Util from './util/Util';
 
 export {
     MyIcon,
@@ -18,4 +19,5 @@ export {
     Dialog,
     Validator,
     RegUtil,
+    Util,
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
 
-import Util from 'util/Util';
 import Header from './component/header';
 import Menu from './component/menu';
 import Breadcrumb from './component/bread';

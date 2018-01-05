@@ -49,6 +49,11 @@ module.exports = {
             __DEV__: true,
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
+        new webpack.DllReferencePlugin({
+            name: 'genesis',
+            context: __dirname,
+            manifest: require(path.resolve(__dirname, './properties/genesis.dll.5ebadc.json'))
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.ejs'

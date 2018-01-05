@@ -6,7 +6,7 @@
  */
 import React, { Component } from 'react';
 import classname from 'classnames';
-import { splitObject } from '../util/ObjectUtil';
+import { splitObject } from './util/ObjectUtil';
 
 export interface IconProps {
     type?: string;

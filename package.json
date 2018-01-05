@@ -4,9 +4,10 @@
   "description": "practice-web",
   "main": "",
   "scripts": {
-    "clean": "rm -rf ./node_modules && yarn install",
-    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js",
-    "pro": "rm -rf dist && ./node_modules/.bin/webpack --config webpack.config.js"
+    "init": "rm -rf ./node_modules && yarn install",
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js",
+    "pro": "rm -rf dist && ./node_modules/.bin/webpack --config webpack.config.js",
+    "dll": "rm -rf ./properties/*.dll.* && ./node_modules/.bin/webpack --config webpack.dll.js"
   },
   "keywords": [],
   "author": "liuhui",

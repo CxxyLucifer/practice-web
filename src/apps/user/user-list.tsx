@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Table, Button, Pagination, Modal, Divider, Layout, Popconfirm } from 'antd';
+import { Fetch, AESUtil, EncryptUtil, Dialog, MyIcon, MyPopConfirm } from 'comps';
 import objectAssign from 'object-assign';
-import Fetch from 'util/Fetch';
-import AESUtil from 'util/AESUtil';
-import EncryptUtil from 'util/EncryptUtil';
-import Dialog from 'util/Dialog';
-import UserAdd from './user-add';
-import { MyIcon, MyPopConfirm } from 'comps';
 
 import ClassTree from './component/class-tree';
+import UserAdd from './user-add';
 
 const { Sider } = Layout;
 const MyPagination: any = Pagination;
@@ -33,14 +29,14 @@ export default class UserList extends Component<any, any> {
     }
 
     componentWillMount() {
-        // let a = AESUtil.encrypt("{'name':'小明','age':18}");
-        // console.log('a:', a);
+        let a = AESUtil.encrypt("{'name':'小明','age':18}");
+        console.log('a:', a);
 
-        // let b = AESUtil.decrypt(a);
-        // console.log('b:', b);
+        let b = AESUtil.decrypt(a);
+        console.log('b:', b);
 
-        // let password = EncryptUtil.MD5('123456');
-        // console.log('password:', password);
+        let password = EncryptUtil.MD5('123456');
+        console.log('password:', password);
 
         const { paramObj } = this.state;
         this._init(paramObj);

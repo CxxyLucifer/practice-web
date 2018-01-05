@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Select, Button, AutoComplete } from 'antd';
-import Validator from 'util/Validator';
+import { Validator } from 'comps';
 
 const MyForm: any = Form;
 const FormItem = Form.Item;

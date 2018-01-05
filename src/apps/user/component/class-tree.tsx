@@ -1,8 +1,7 @@
 import React from 'react';
 import { Tree, message, Modal } from 'antd';
-import Fetch from 'util/Fetch';
 import { fromJS } from 'immutable';
-import { MyTreeNode } from 'comps';
+import { MyTreeNode, Fetch } from 'comps';
 
 const TreeNode = Tree.TreeNode;
 

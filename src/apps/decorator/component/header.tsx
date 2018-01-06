@@ -71,7 +71,7 @@ export default class header extends Component<any, any> {
                 />
                 <div className="header-right">
                     <NoticeIcon
-                        className="action notice-icon"
+                        className="notice-action notice-icon"
                         count={12}
                         onItemClick={(item: any, tabProps: any) => {
                             console.log(item, tabProps); // eslint-disable-line

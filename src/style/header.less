@@ -42,6 +42,21 @@ i.trigger {
 .header-right {
   float: right;
   height: 100%;
+
+  .notice-action {
+    cursor: pointer;
+    padding: 20px 12px;
+    display: inline-block;
+    transition: all .3s;
+    > i {
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    &:global(.ant-popover-open),
+    &:hover {
+      background: @primary-1;
+    }
+  }
   .action {
     cursor: pointer;
     padding: 0 12px;

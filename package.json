@@ -2,7 +2,7 @@
   "name": "practice-web",
   "version": "1.0.0-RELEASE",
   "description": "practice-web",
-  "dll": "genesis.dll.5ebadc.json",
+  "dll": "genesis.dll.5ebadc",
   "main": "",
   "scripts": {
     "init": "rm -rf ./node_modules && yarn install",

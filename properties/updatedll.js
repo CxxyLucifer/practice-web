@@ -13,6 +13,7 @@ fs.readdir(filePath, (err, files) => {
     }
     files.forEach((filename) => {
         if (filename.startsWith('genesis.dll') && filename.endsWith('.json')) {
+            filename = filename.substr('.json')[0];
             exec(`sed -i '' 's/${project_package.dll}/${filename}/g' ${__dirname}/../package.json`,
                 (error, stdout, stderr) => {
                     console.log(colors.yellow(stdout));

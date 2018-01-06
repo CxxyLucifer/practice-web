@@ -14,6 +14,8 @@ declare module 'crypto-js';
 
 declare module 'ant-design-pro/lib/*';
 
+declare module 'HtmlExtPlugin';
+
 /**
  * 开发模式
  */

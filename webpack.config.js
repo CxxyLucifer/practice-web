@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlExtPlugin = require('./src/web_modules/HtmlExtPlugin');
-const { version, dll } = require('./package.json');
+const { version } = require('./package.json');
+const { dll_filename } = require('./properties/config.json');
 
 module.exports = {
     entry: {
@@ -56,7 +57,7 @@ module.exports = {
         new webpack.DllReferencePlugin({
             name: 'genesis',
             context: __dirname,
-            manifest: require(path.resolve(__dirname, `./properties/${dll}.json`))
+            manifest: require(path.resolve(__dirname, `./properties/${dll_filename}.json`))
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: false }
@@ -70,7 +71,7 @@ module.exports = {
             context: __dirname,
             filename: ['./properties/config.json'],
             option: {
-                dll: `${dll}`
+                dll: `${dll_filename}`
             }
         })
     ]

@@ -1,4 +1,5 @@
 {
+    "dll_filename": "genesis.dll.7ae81d",
     "link": [],
     "script": [
         "./properties/[dll].js"

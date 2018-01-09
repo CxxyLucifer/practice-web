@@ -1,7 +1,7 @@
-const objectAssign = require("object-assign");
-const path = require("path");
+import objectAssign from 'object-assign';
+import path from 'path';
 
-class HtmlExtPlugin {
+export default class HtmlExtPlugin {
     constructor({ context, filename, option = { dll: '' } }) {
         this.config = objectAssign(option, getConfig(context, filename));
     }
@@ -88,5 +88,3 @@ const getConfigFromFile = (context, filename) => {
     }
     return config;
 }
-
-module.exports = HtmlExtPlugin;

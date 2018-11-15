@@ -21,7 +21,10 @@
                 stompClient.subscribe('/websocket/msg', function (greeting) {
                     console.log('================ message:',greeting.body)
                 });
-                stompClient.send("/msg", {'Content-Type':'application/json'}, JSON.stringify({'body':{'conf_key':'c_duo','conf_value':'我爱duoduo'}}));
+
+                var param = JSON.stringify({conf_key:'c_duo',conf_value:'我爱duoduo'});
+                stompClient.send("/msg", {} , param);
+
             },(fail)=>{
                 var tryTask = setTimeout(()=>{
                     console.log('----------------try Connect again ...');

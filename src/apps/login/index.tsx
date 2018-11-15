@@ -134,7 +134,7 @@ export default class Login extends Component<any, any> {
                         <a target="_blank" href="">隐私</a>
                         <a target="_blank" href="">条款</a>
                     </div>
-                    <div className="copyright">Copyright  2017 楠色星辰技术出品</div>
+                    <div className="copyright">Copyright</div>
                 </div>
             </div>
         );

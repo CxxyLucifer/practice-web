@@ -4,17 +4,35 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
+    <title> <%= htmlWebpackPlugin.options.title %> </title>
+    <script src="./src/style/js/sockjs.min.js"></script>
+    <script src="./src/style/js/stomp.js"></script>
     <script>
         var myStorage = window.sessionStorage;
         myStorage.setItem('jwt_token', '2806e7e624204664a8c4f45500ff5499');
+        
+        initClient();
+
+        function initClient(){
+            var socket = new SockJS('http://127.0.0.1:8004/testWS');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, (success)=> {
+                console.log('---------------- Connected: ' + success);
+                stompClient.subscribe('/websocket/msg', function (greeting) {
+                    console.log('================ message:',greeting.body)
+                });
+                stompClient.send("/msg", {'Content-Type':'application/json'}, JSON.stringify({'body':{'conf_key':'c_duo','conf_value':'我爱duoduo'}}));
+            },(fail)=>{
+                var tryTask = setTimeout(()=>{
+                    console.log('----------------try Connect again ...');
+                    initClient();
+                    clearTimeout(tryTask);
+                },1000);
+            });
+        }
     </script>
 </head>
-
 <body>
     <div id="content"></div>
 </body>
-
 </html>

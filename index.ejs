@@ -14,20 +14,24 @@
         initClient();
 
         function initClient(){
-            var socket = new SockJS('http://127.0.0.1:8004/testWS');
+            var socket = new SockJS('http://127.0.0.1:8004/testWS?id=qm2536');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, (success)=> {
                 console.log('---------------- Connected: ' + success);
-                stompClient.subscribe('/websocket/msg', function (greeting) {
-                    console.log('================ message:',greeting.body)
+                stompClient.subscribe('/user/websocket/msg', function (greeting) {
+                    console.log('================ receive own message:',greeting.body)
                 });
 
-                var param = JSON.stringify({conf_key:'c_duo',conf_value:'我爱duoduo'});
-                stompClient.send("/msg", {} , param);
+                 stompClient.subscribe('/websocket/msg', function (greeting) {
+                    console.log('================ receive all message:',greeting.body)
+                });
+
+                // var param = JSON.stringify({conf_key:'c_duo',conf_value:'我爱duoduo'});
+                // stompClient.send("/msg", {} , param);
 
             },(fail)=>{
                 var tryTask = setTimeout(()=>{
-                    console.log('----------------try Connect again ...');
+                    console.log('---------------- try Connect again ...');
                     initClient();
                     clearTimeout(tryTask);
                 },1000);

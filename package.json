@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "init": "rm -rf ./node_modules && yarn install",
-    "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js",
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --progress",
     "build": "rm -rf ./dist/* && ./node_modules/.bin/webpack --config webpack.config.js",
     "dll": "rm -rf ./properties/*.dll.* && ./node_modules/.bin/webpack --config webpack.dll.js && babel-node ./properties/updatedll.js"
   },

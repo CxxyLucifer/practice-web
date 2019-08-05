@@ -7,11 +7,26 @@
     <title> <%= htmlWebpackPlugin.options.title %> </title>
     <script src="./src/style/js/sockjs.min.js"></script>
     <script src="./src/style/js/stomp.js"></script>
+    <script src="./src/style/js/jsencrypt.min.js"></script>
     <script>
         var myStorage = window.sessionStorage;
         myStorage.setItem('jwt_token', '2806e7e624204664a8c4f45500ff5499');
         
-        initClient();
+        // initClient();
+        // testRsa();
+
+        function testRsa(){
+            var publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRTJk6zKtPvo1YQ8J0FTzpFWh00fXMafYePQnuQ/l10oeo3BTlG1TGpa5ekgDXb5GfYNVW1638ySacG+/4Z6NlbUrr4j3MiktzzviJC9F5c4KTiKrqnzrQqWDvTUqoN1xyNQZQpcIN8toJYmR/PbT+3IFNTuc26l7B11daOOWNVwIDAQAB';
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(publicKey);
+
+            var encryptTxt = encodeURI(encrypt.encrypt('Aijia410315')).replace(/\+/g, '%2B');
+            console.log('---------- encryptTxt:', encryptTxt)
+        }
+
+
+
+
 
         function initClient(){
             var socket = new SockJS('http://127.0.0.1:8004/testWS?id=qm2536');

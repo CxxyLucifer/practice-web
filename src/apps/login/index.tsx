@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
+import { RSAUtil } from 'comps';
 import '../../style/login.less';
 
 const MyForm: any = Form;
@@ -21,6 +22,16 @@ export default class Login extends Component<any, any> {
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    componentDidMount(){
+        this._encryptPwd();
+    }
+
+    _encryptPwd =()=> {
+        const publicKey = `MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFhCMuoQt54NAan0cvaPZeiS6xGqXtDZaJ+xVlUNIBYpsy+oXpe2mlhTtLaAHJfNLF1tNyBYgHfO3FADC/1vvEha2+ZtbecisjJ1YCkF2TJYOKlPpucBaAN0Nb03IlqS0c0m9xOA/Lqh+IbRyGkM4Vq+pLPzibYibCvLladzFpDQIDAQAB`;
+        const txt = 'Aijia410315';
+        console.log('=======encryptTxt:', RSAUtil.encryptByPublicKey(txt, publicKey))
     }
 
     render() {

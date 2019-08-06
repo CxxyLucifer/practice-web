@@ -16,16 +16,13 @@
         // testRsa();
 
         function testRsa(){
-            var publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRTJk6zKtPvo1YQ8J0FTzpFWh00fXMafYePQnuQ/l10oeo3BTlG1TGpa5ekgDXb5GfYNVW1638ySacG+/4Z6NlbUrr4j3MiktzzviJC9F5c4KTiKrqnzrQqWDvTUqoN1xyNQZQpcIN8toJYmR/PbT+3IFNTuc26l7B11daOOWNVwIDAQAB';
+            var publicKey = `MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFhCMuoQt54NAan0cvaPZeiS6xGqXtDZaJ+xVlUNIBYpsy+oXpe2mlhTtLaAHJfNLF1tNyBYgHfO3FADC/1vvEha2+ZtbecisjJ1YCkF2TJYOKlPpucBaAN0Nb03IlqS0c0m9xOA/Lqh+IbRyGkM4Vq+pLPzibYibCvLladzFpDQIDAQAB`;
             var encrypt = new JSEncrypt();
             encrypt.setPublicKey(publicKey);
 
             var encryptTxt = encodeURI(encrypt.encrypt('Aijia410315')).replace(/\+/g, '%2B');
             console.log('---------- encryptTxt:', encryptTxt)
         }
-
-
-
 
 
         function initClient(){

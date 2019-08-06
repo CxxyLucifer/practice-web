@@ -16,6 +16,10 @@ declare module 'ant-design-pro/lib/*';
 
 declare module 'HtmlExtPlugin';
 
+declare module 'jsencrypt';
+
+declare module 'fs-extra';
+
 /**
  * 开发模式
  */

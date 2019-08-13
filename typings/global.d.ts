@@ -20,6 +20,8 @@ declare module 'jsencrypt';
 
 declare module 'fs-extra';
 
+declare module 'js-base64';
+
 /**
  * 开发模式
  */

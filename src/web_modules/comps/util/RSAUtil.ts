@@ -1,4 +1,5 @@
 import { JSEncrypt } from 'jsencrypt';
+import { Base64 } from 'js-base64';
 
 /**
  * 甲方构建密钥对儿，将公钥公布给乙方，将私钥保留。
@@ -6,6 +7,28 @@ import { JSEncrypt } from 'jsencrypt';
  * 乙方使用公钥加密数据，向甲方发送经过加密后的数据；甲方获得加密数据，通过私钥解密。
  */
 let encrypt:any;
+
+ 
+/**
+ * 获取私钥
+ */
+const getPrivateKey = () =>{
+    if (!encrypt) {
+        encrypt = new JSEncrypt();
+    }
+    return encrypt.getPrivateKeyB64();
+}
+
+/**
+ * 获取公钥
+ */
+const getPublicKey = () => {
+    if (!encrypt) {
+        encrypt = new JSEncrypt();
+    }
+    return encrypt.getPublicKeyB64();
+}
+
 
 /**
  * 公钥加密
@@ -17,7 +40,7 @@ const encryptByPublicKey = (content:string,publicKey:string)=> {
         encrypt = new JSEncrypt();
     }
     encrypt.setPublicKey(publicKey);
-    return encodeURI(encrypt.encrypt(content)).replace(/\+/g, '%2B');
+    return encodeURI(encrypt.encrypt(content));
 }
 
 /**
@@ -30,7 +53,7 @@ const encryptByPrivateKey = (content: string, privateKey: string) => {
         encrypt = new JSEncrypt();
     }
     encrypt.setPrivateKey(privateKey);
-    return encodeURI(encrypt.encrypt(content)).replace(/\+/g, '%2B');
+    return encodeURI(encrypt.encrypt(content));
 }
 
 
@@ -62,9 +85,41 @@ const decryptByPrivateKey = (content: string, privateKey: string) => {
 }
 
 
+/**
+ * 使用私钥进行数字签名
+ * @param content 待签名内容
+ * @param privateKey
+ */
+const sign = (content: string, privateKey: string) => {
+    if (!encrypt) {
+        encrypt = new JSEncrypt();
+    }
+    encrypt.setPrivateKey(privateKey);
+    return encrypt.sign(content, () => {}, '');
+}
+
+/**
+ * 校验数字签名
+ * @param content 待验证内容
+ * @param publicKey 
+ * @param signature 数字签名(encoded in base64)
+ */
+const verify = (content: string, publicKey: string, signature:string) =>{
+    if (!encrypt) {
+        encrypt = new JSEncrypt();
+    }
+    encrypt.setPublicKey(publicKey);
+    return encrypt.verify(content, signature,()=>{});
+}
+
+
 export default {
+    getPrivateKey,
+    getPublicKey,
     encryptByPublicKey,
     encryptByPrivateKey,
     decryptByPublicKey,
     decryptByPrivateKey,
+    sign,
+    verify
 }

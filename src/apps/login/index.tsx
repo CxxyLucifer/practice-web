@@ -52,12 +52,12 @@ export default class Login extends Component<any, any> {
         const encryptTxt = RSAUtil.encryptByPrivateKey(txt, privateKey);
         console.log('===== encryptTxt:', encryptTxt)
 
-
         const decryptTxt = RSAUtil.decryptByPublicKey(encryptTxt, publicKey);
         console.log('===== decryptTxt:', decryptTxt)
 
 
-
+        // const signedTxt = RSAUtil.sign(encryptTxt, privateKey);
+        // console.log('===== singedTxt:', signedTxt)
     }
 
     render() {

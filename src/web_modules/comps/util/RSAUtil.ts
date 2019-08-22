@@ -40,7 +40,8 @@ const encryptByPublicKey = (content:string,publicKey:string)=> {
         encrypt = new JSEncrypt();
     }
     encrypt.setPublicKey(publicKey);
-    return encodeURI(encrypt.encrypt(content));
+    // return encodeURI(encrypt.encrypt(content)).replace(/\+/g, '%2B');
+    return encrypt.encrypt(content);
 }
 
 /**
@@ -53,13 +54,14 @@ const encryptByPrivateKey = (content: string, privateKey: string) => {
         encrypt = new JSEncrypt();
     }
     encrypt.setPrivateKey(privateKey);
-    return encodeURI(encrypt.encrypt(content));
+    // return encodeURI(encrypt.encrypt(content)).replace(/\+/g, '%2B');
+    return encrypt.encrypt(content);
 }
 
 
 /**
  * 公钥解密
- * @param content  内容
+ * @param content  内容（base64)
  * @param publicKey  公钥
  */
 const decryptByPublicKey = (content: string, publicKey: string) => {
@@ -73,7 +75,7 @@ const decryptByPublicKey = (content: string, publicKey: string) => {
 
 /**
  * 私钥解密
- * @param content  内容
+ * @param content  内容（base64)
  * @param privateKey  私钥
  */
 const decryptByPrivateKey = (content: string, privateKey: string) => {

@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlExtPlugin = require('./src/web_modules/HtmlExtPlugin');
 const { version } = require('./package.json');
 const { dll_filename } = require('./properties/config.json');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
     entry: {
@@ -73,6 +74,7 @@ module.exports = {
             option: {
                 dll: `${dll_filename}`
             }
-        })
+        }),
+        new BundleAnalyzerPlugin()
     ]
 }
